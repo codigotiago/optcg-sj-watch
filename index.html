@@ -150,8 +150,11 @@ function fmtPrice(e) {
   const n = parseFloat(e.entryFee);
   if (!isFinite(n)) return { txt: "—", free: false };
   if (n === 0) return { txt: "Free", free: true };
-  const cur = e.entry_fee_currency_code === "USD" ? "$" : (e.entry_fee_currency_code || "") + " ";
-  return { txt: cur + n.toFixed(2).replace(/\.00$/, ""), free: false };
+  // The API spells the same currency three ways: "USD", "usd" and "$".
+  const raw = String(e.entry_fee_currency_code || "").trim();
+  const isUsd = /^(usd|\$)$/i.test(raw);
+  const amount = n.toFixed(2).replace(/\.00$/, "");
+  return { txt: isUsd ? "$" + amount : (raw ? raw + " " : "") + amount, free: false };
 }
 
 function esc(s) {
