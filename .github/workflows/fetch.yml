@@ -1,0 +1,66 @@
+name: Fetch OPCG San Jose events
+
+on:
+  schedule:
+    # 07:00 UTC = 12:00am PDT / 11:00pm PST. Runs 5 min before the Claude routine.
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch event list from Bandai TCG+
+        run: |
+          set -euo pipefail
+          URL='https://api.bandai-tcg-plus.com/api/user/event/list?game_title_id=4&country_code[]=US&organizer_id=9297&limit=100&offset=0&order=1'
+          for attempt in 1 2 3; do
+            if curl -sSf --max-time 30 "$URL" -o raw.json; then
+              break
+            fi
+            echo "attempt $attempt failed" >&2
+            [ "$attempt" = 3 ] && exit 1
+            sleep 10
+          done
+          # Fail loudly if the shape changed, rather than committing junk.
+          jq -e '.success.event_list | type == "array"' raw.json > /dev/null
+
+      - name: Build snapshot
+        run: |
+          set -euo pipefail
+          jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '{
+            fetched_at: $ts,
+            total: (.success.total // 0),
+            events: [
+              .success.event_list[] | {
+                id, event_series_title, excerpt,
+                start_datetime, timezone, apply_start_datetime,
+                event_created_at, event_updated_at,
+                max_join_count, is_over_max_join_count,
+                applicationOpen, is_canceled,
+                entryFee, entry_fee_currency_code,
+                street_address, city_code,
+                url: ("https://www.bandai-tcg-plus.com/event/detail/" + (.id|tostring))
+              }
+            ]
+          }' raw.json > events.json
+          rm -f raw.json
+          jq -r '"fetched \(.total) events at \(.fetched_at)"' events.json
+
+      - name: Commit if changed
+        run: |
+          set -euo pipefail
+          git config user.name "opcg-watch-bot"
+          git config user.email "actions@github.com"
+          git add events.json
+          if git diff --cached --quiet; then
+            echo "no change"
+          else
+            git commit -m "snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
