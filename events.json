@@ -20,7 +20,7 @@
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/detail/7366753",
-      "first_seen_at": "2026-09-10T09:45:41Z"
+      "first_seen_at": "2026-06-15T23:59:48+00:00"
     },
     {
       "id": 7763906,
@@ -225,7 +225,7 @@
     {
       "id": 7366771,
       "event_series_title": "[Official Shop] Kid's Cup",
-      "excerpt": "Kid’s Cup – store tournaments designed exclusively for kids aged 6-16! All skill levels are welcome, and staff will be available to provide guidance.",
+      "excerpt": "Kid\u2019s Cup \u2013 store tournaments designed exclusively for kids aged 6-16! All skill levels are welcome, and staff will be available to provide guidance.",
       "start_datetime": "2026-09-27T15:00:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-06-17T14:00:00+00:00",
