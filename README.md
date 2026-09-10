@@ -17,12 +17,26 @@ So GitHub Actions does the fetching, and the routine reads the result from
 
 ## How it works
 
-Twice a day:
+## The site
 
-1. `.github/workflows/fetch.yml` runs at 06:45 and 15:45 UTC (11:45pm and 8:45am PDT),
+**https://codigotiago.github.io/optcg-sj-watch/**
+
+Upcoming events at both stores, per store, with seats/applicants, price and a signup
+link. Loads `events.json` instantly, and **Refresh from Bandai** re-queries the live API
+from the browser — the API returns `Access-Control-Allow-Origin` reflecting the caller,
+so no proxy is needed. Applicant counts are one request per event, so a refresh takes a
+few seconds.
+
+## How the watcher works
+
+Three times a day:
+
+1. `.github/workflows/fetch.yml` runs at 23:45, 06:45 and 15:45 UTC (4:45pm, 11:45pm and
+   8:45am PDT),
    calls the API, and commits `events.json`. Every event carries `first_seen_at` — the
    time this workflow first observed that id. It never changes afterwards.
-2. A Claude Code routine runs at 07:05 and 16:05 UTC (12:05am and 9:05am PDT), reads
+2. A Claude Code routine runs at 00:05, 07:05 and 16:05 UTC (5:05pm, 12:05am and 9:05am
+   PDT), reads
    `events.json`, and emails any event whose `first_seen_at` is within 26 hours.
    No new events, no email.
 
