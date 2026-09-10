@@ -2,10 +2,12 @@ name: Fetch OPCG San Jose events
 
 on:
   schedule:
-    # 07:00 UTC = 12:00am PDT. Routine reads the result at 07:05.
-    - cron: "0 7 * * *"
-    # 15:55 UTC = 8:55am PDT. Routine reads the result at 16:05.
-    - cron: "55 15 * * *"
+    # 06:45 UTC = 11:45pm PDT. Routine reads the result at 07:05 (12:05am).
+    - cron: "45 6 * * *"
+    # 15:45 UTC = 8:45am PDT. Routine reads the result at 16:05 (9:05am).
+    # The 20-minute gap absorbs raw.githubusercontent.com's ~5 min CDN TTL
+    # and GitHub's habit of running scheduled workflows late.
+    - cron: "45 15 * * *"
   workflow_dispatch:
 
 permissions:
@@ -36,41 +38,42 @@ jobs:
           # Fail loudly if the shape changed, rather than committing junk.
           jq -e '.success.event_list | type == "array"' raw.json > /dev/null
 
-      - name: Diff against the previous snapshot
+      - name: Stamp first_seen_at
         run: |
           set -euo pipefail
-          # events.json from the checkout is the PREVIOUS run's snapshot.
-          # Anything whose id is absent from it is genuinely new. This is what
-          # makes twice-daily checks safe: no time window, so no duplicate alerts.
+          # Each event carries first_seen_at: the UTC time this workflow FIRST
+          # observed that id. It never changes afterwards, so the routine can
+          # ask "posted since when?" without needing state of its own.
+          #
+          # Deliberately NOT a diff against the previous snapshot: if a
+          # scheduled run lands late, a diff would mark the event new on a run
+          # nobody reads and clear it before the next one, losing the alert
+          # entirely. A stable stamp only ever risks a duplicate email.
           if [ -f events.json ]; then
-            jq '[.events[].id]' events.json > prev_ids.json
+            jq '[.events[] | {id, first_seen_at}]' events.json > prev_seen.json
           else
-            # First ever run: treat everything as already-seen so we don't
-            # blast the whole existing calendar as "new".
-            jq '[.success.event_list[].id]' raw.json > prev_ids.json
+            echo '[]' > prev_seen.json
           fi
 
-          jq --slurpfile prev prev_ids.json --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '
-            def clean:
-              { id, event_series_title, excerpt,
-                start_datetime, timezone, apply_start_datetime,
-                event_created_at, event_updated_at,
-                max_join_count, is_over_max_join_count,
-                applicationOpen, is_canceled,
-                entryFee, entry_fee_currency_code,
-                street_address, city_code,
-                url: ("https://www.bandai-tcg-plus.com/event/detail/" + (.id|tostring)) };
-            ($prev[0]) as $seen
-            | [ .success.event_list[] | clean ] as $all
+          jq --slurpfile prev prev_seen.json --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '
+            ($prev[0] | map({key: (.id|tostring), value: .first_seen_at}) | from_entries) as $seen
             | { fetched_at: $ts,
                 total: (.success.total // 0),
-                new_events: [ $all[] | select((.id | IN($seen[])) | not) | select(.is_canceled == false) ],
-                events: $all }
+                events: [ .success.event_list[] |
+                  { id, event_series_title, excerpt,
+                    start_datetime, timezone, apply_start_datetime,
+                    event_created_at, event_updated_at,
+                    max_join_count, is_over_max_join_count,
+                    applicationOpen, is_canceled,
+                    entryFee, entry_fee_currency_code,
+                    street_address, city_code,
+                    url: ("https://www.bandai-tcg-plus.com/event/detail/" + (.id|tostring)),
+                    first_seen_at: ($seen[(.id|tostring)] // $ts) } ] }
           ' raw.json > next.json
 
           mv next.json events.json
-          rm -f raw.json prev_ids.json
-          jq -r '"\(.total) events, \(.new_events|length) new, at \(.fetched_at)"' events.json
+          rm -f raw.json prev_seen.json
+          jq -r '.fetched_at as $t | "\(.total) events, \([.events[] | select(.first_seen_at == $t)] | length) first seen this run, at \($t)"' events.json
 
       - name: Commit
         run: |

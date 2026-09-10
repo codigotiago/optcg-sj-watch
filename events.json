@@ -1,27 +1,6 @@
 {
   "fetched_at": "2026-09-10T09:41:38Z",
   "total": 13,
-  "new_events": [
-    {
-      "id": 7366753,
-      "event_series_title": "[Official Shop] Sealed Battle",
-      "excerpt": "The format is Sealed. Players will purchase six booster packs at the event and construct a 40-card deck on the spot. (There are no color restrictions; players will receive a 6-color leader card that must be used at this event.) Players need to bring 10 DON!! cards with you.",
-      "start_datetime": "2026-09-11T17:30:00",
-      "timezone": "America/Los_Angeles",
-      "apply_start_datetime": "2026-06-17T14:00:00+00:00",
-      "event_created_at": "2026-06-15T23:59:48+00:00",
-      "event_updated_at": "2026-06-17T15:46:46+00:00",
-      "max_join_count": 32,
-      "is_over_max_join_count": false,
-      "applicationOpen": "1",
-      "is_canceled": false,
-      "entryFee": "0.000",
-      "entry_fee_currency_code": "USD",
-      "street_address": "675 Saratoga Ave",
-      "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366753"
-    }
-  ],
   "events": [
     {
       "id": 7366753,
@@ -40,7 +19,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366753"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366753",
+      "first_seen_at": "2026-06-15T23:59:48+00:00"
     },
     {
       "id": 7763906,
@@ -59,7 +39,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7763906"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7763906",
+      "first_seen_at": "2026-07-27T20:29:37+00:00"
     },
     {
       "id": 7366735,
@@ -78,7 +59,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366735"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366735",
+      "first_seen_at": "2026-06-15T23:54:57+00:00"
     },
     {
       "id": 7763907,
@@ -97,7 +79,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7763907"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7763907",
+      "first_seen_at": "2026-07-27T20:29:37+00:00"
     },
     {
       "id": 7366736,
@@ -116,7 +99,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366736"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366736",
+      "first_seen_at": "2026-06-15T23:54:57+00:00"
     },
     {
       "id": 7366737,
@@ -135,7 +119,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366737"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366737",
+      "first_seen_at": "2026-06-15T23:54:57+00:00"
     },
     {
       "id": 7366738,
@@ -154,7 +139,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366738"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366738",
+      "first_seen_at": "2026-06-15T23:54:58+00:00"
     },
     {
       "id": 7366739,
@@ -173,7 +159,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366739"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366739",
+      "first_seen_at": "2026-06-15T23:54:58+00:00"
     },
     {
       "id": 7366763,
@@ -192,7 +179,8 @@
       "entry_fee_currency_code": "usd",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366763"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366763",
+      "first_seen_at": "2026-06-16T00:03:40+00:00"
     },
     {
       "id": 7763908,
@@ -211,7 +199,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7763908"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7763908",
+      "first_seen_at": "2026-07-27T20:29:37+00:00"
     },
     {
       "id": 7366740,
@@ -230,12 +219,13 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366740"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366740",
+      "first_seen_at": "2026-06-15T23:54:58+00:00"
     },
     {
       "id": 7366771,
       "event_series_title": "[Official Shop] Kid's Cup",
-      "excerpt": "Kid’s Cup – store tournaments designed exclusively for kids aged 6-16! All skill levels are welcome, and staff will be available to provide guidance.",
+      "excerpt": "Kid\u2019s Cup \u2013 store tournaments designed exclusively for kids aged 6-16! All skill levels are welcome, and staff will be available to provide guidance.",
       "start_datetime": "2026-09-27T15:00:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-06-17T14:00:00+00:00",
@@ -249,7 +239,8 @@
       "entry_fee_currency_code": "usd",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366771"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366771",
+      "first_seen_at": "2026-06-16T00:06:13+00:00"
     },
     {
       "id": 7664866,
@@ -268,7 +259,8 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7664866"
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7664866",
+      "first_seen_at": "2026-07-17T18:05:34+00:00"
     }
   ]
 }
