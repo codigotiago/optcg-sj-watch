@@ -1,7 +1,12 @@
 # optcg-sj-watch
 
-Daily snapshot of ONE PIECE CARD GAME events at **ONE PIECE CARD GAME Official Shop San Jose**,
-so a scheduled Claude Code routine can email when a new one is posted.
+Snapshot of ONE PIECE CARD GAME events at two South Bay stores, so a scheduled Claude
+Code routine can email when a new one is posted.
+
+| Store | `organizer_id` | Where | Typical night |
+|---|---|---|---|
+| ONE PIECE CARD GAME Official Shop San Jose | 9297 | 675 Saratoga Ave, San Jose | Thu/Fri/Sat/Sun |
+| CardArt | 1339 | 781 E El Camino Real Suite 100, Sunnyvale | Tuesday |
 
 ## Why this repo exists
 
@@ -43,7 +48,10 @@ https://api.bandai-tcg-plus.com/api/user/event/list?game_title_id=4&country_code
 ```
 
 - `game_title_id=4` — ONE PIECE CARD GAME (English)
-- `organizer_id=9297` — the San Jose shop
+- `organizer_id` — 9297 (San Jose) or 1339 (CardArt); fetched separately and merged
+
+Both fetches must succeed or the workflow fails. A partial fetch would look like that
+store's events had been deleted, and would silently stop alerting for it.
 
 `apply_start_datetime` is the field that matters: it's when signups open.
 
