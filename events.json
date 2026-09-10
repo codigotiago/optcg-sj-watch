@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-10T10:09:12Z",
+  "fetched_at": "2026-09-10T10:17:46Z",
   "total": 24,
   "events": [
     {
@@ -23,7 +23,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366753",
-      "first_seen_at": "2026-06-15T23:59:48+00:00"
+      "first_seen_at": "2026-06-15T23:59:48+00:00",
+      "count_applicants": 229,
+      "seats_left": -197
     },
     {
       "id": 7763906,
@@ -46,7 +48,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763906",
-      "first_seen_at": "2026-07-27T20:29:37+00:00"
+      "first_seen_at": "2026-07-27T20:29:37+00:00",
+      "count_applicants": 44,
+      "seats_left": -28
     },
     {
       "id": 7366735,
@@ -69,7 +73,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366735",
-      "first_seen_at": "2026-06-15T23:54:57+00:00"
+      "first_seen_at": "2026-06-15T23:54:57+00:00",
+      "count_applicants": 63,
+      "seats_left": -31
     },
     {
       "id": 7763907,
@@ -92,7 +98,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763907",
-      "first_seen_at": "2026-07-27T20:29:37+00:00"
+      "first_seen_at": "2026-07-27T20:29:37+00:00",
+      "count_applicants": 40,
+      "seats_left": -24
     },
     {
       "id": 7366736,
@@ -115,7 +123,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366736",
-      "first_seen_at": "2026-06-15T23:54:57+00:00"
+      "first_seen_at": "2026-06-15T23:54:57+00:00",
+      "count_applicants": 51,
+      "seats_left": -19
     },
     {
       "id": 7366737,
@@ -138,7 +148,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366737",
-      "first_seen_at": "2026-06-15T23:54:57+00:00"
+      "first_seen_at": "2026-06-15T23:54:57+00:00",
+      "count_applicants": 57,
+      "seats_left": -25
     },
     {
       "id": 7366738,
@@ -161,7 +173,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366738",
-      "first_seen_at": "2026-06-15T23:54:58+00:00"
+      "first_seen_at": "2026-06-15T23:54:58+00:00",
+      "count_applicants": 56,
+      "seats_left": -24
     },
     {
       "id": 7366739,
@@ -184,7 +198,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366739",
-      "first_seen_at": "2026-06-15T23:54:58+00:00"
+      "first_seen_at": "2026-06-15T23:54:58+00:00",
+      "count_applicants": 51,
+      "seats_left": -19
     },
     {
       "id": 7366763,
@@ -207,7 +223,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366763",
-      "first_seen_at": "2026-06-16T00:03:40+00:00"
+      "first_seen_at": "2026-06-16T00:03:40+00:00",
+      "count_applicants": 30,
+      "seats_left": -14
     },
     {
       "id": 7763908,
@@ -230,7 +248,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763908",
-      "first_seen_at": "2026-07-27T20:29:37+00:00"
+      "first_seen_at": "2026-07-27T20:29:37+00:00",
+      "count_applicants": 39,
+      "seats_left": -23
     },
     {
       "id": 7366740,
@@ -253,7 +273,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366740",
-      "first_seen_at": "2026-06-15T23:54:58+00:00"
+      "first_seen_at": "2026-06-15T23:54:58+00:00",
+      "count_applicants": 58,
+      "seats_left": -26
     },
     {
       "id": 7366771,
@@ -276,7 +298,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366771",
-      "first_seen_at": "2026-06-16T00:06:13+00:00"
+      "first_seen_at": "2026-06-16T00:06:13+00:00",
+      "count_applicants": 16,
+      "seats_left": 16
     },
     {
       "id": 7664866,
@@ -299,7 +323,9 @@
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7664866",
-      "first_seen_at": "2026-07-17T18:05:34+00:00"
+      "first_seen_at": "2026-07-17T18:05:34+00:00",
+      "count_applicants": 218,
+      "seats_left": -186
     },
     {
       "id": 6906806,
@@ -322,7 +348,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/6906806",
-      "first_seen_at": "2026-05-04T23:09:21+00:00"
+      "first_seen_at": "2026-05-04T23:09:21+00:00",
+      "count_applicants": 36,
+      "seats_left": -4
     },
     {
       "id": 7696195,
@@ -345,7 +373,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696195",
-      "first_seen_at": "2026-07-20T22:11:20+00:00"
+      "first_seen_at": "2026-07-20T22:11:20+00:00",
+      "count_applicants": 11,
+      "seats_left": 5
     },
     {
       "id": 6906807,
@@ -368,7 +398,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/6906807",
-      "first_seen_at": "2026-05-04T23:09:21+00:00"
+      "first_seen_at": "2026-05-04T23:09:21+00:00",
+      "count_applicants": 23,
+      "seats_left": 9
     },
     {
       "id": 7696196,
@@ -391,7 +423,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696196",
-      "first_seen_at": "2026-07-20T22:11:20+00:00"
+      "first_seen_at": "2026-07-20T22:11:20+00:00",
+      "count_applicants": 5,
+      "seats_left": 11
     },
     {
       "id": 6906808,
@@ -414,7 +448,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/6906808",
-      "first_seen_at": "2026-05-04T23:09:21+00:00"
+      "first_seen_at": "2026-05-04T23:09:21+00:00",
+      "count_applicants": 16,
+      "seats_left": 16
     },
     {
       "id": 7597960,
@@ -437,7 +473,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
-      "first_seen_at": "2026-07-07T21:38:08+00:00"
+      "first_seen_at": "2026-07-07T21:38:08+00:00",
+      "count_applicants": 93,
+      "seats_left": -61
     },
     {
       "id": 7696197,
@@ -460,7 +498,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696197",
-      "first_seen_at": "2026-07-20T22:11:20+00:00"
+      "first_seen_at": "2026-07-20T22:11:20+00:00",
+      "count_applicants": 2,
+      "seats_left": 14
     },
     {
       "id": 7696198,
@@ -483,7 +523,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696198",
-      "first_seen_at": "2026-07-20T22:11:20+00:00"
+      "first_seen_at": "2026-07-20T22:11:20+00:00",
+      "count_applicants": 3,
+      "seats_left": 13
     },
     {
       "id": 7696199,
@@ -506,7 +548,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696199",
-      "first_seen_at": "2026-07-20T22:11:20+00:00"
+      "first_seen_at": "2026-07-20T22:11:20+00:00",
+      "count_applicants": 1,
+      "seats_left": 15
     },
     {
       "id": 7696200,
@@ -529,7 +573,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696200",
-      "first_seen_at": "2026-07-20T22:11:20+00:00"
+      "first_seen_at": "2026-07-20T22:11:20+00:00",
+      "count_applicants": 1,
+      "seats_left": 15
     },
     {
       "id": 7696194,
@@ -552,7 +598,9 @@
       "organizer_name": "CardArt",
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696194",
-      "first_seen_at": "2026-07-20T22:11:20+00:00"
+      "first_seen_at": "2026-07-20T22:11:20+00:00",
+      "count_applicants": 9,
+      "seats_left": 7
     }
   ]
 }
