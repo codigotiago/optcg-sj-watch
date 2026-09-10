@@ -83,7 +83,7 @@ jobs:
                     street_address, city_code,
                     organizer_id, organizer_name,
                     store: (if (.organizer_id == 9297) then "San Jose (walk)" else "CardArt Sunnyvale (drive)" end),
-                    url: ("https://www.bandai-tcg-plus.com/event/detail/" + (.id|tostring)),
+                    url: ("https://www.bandai-tcg-plus.com/event/" + (.id|tostring)),
                     first_seen_at: ($seen[(.id|tostring)] // $ts) } ] }
           ' raw.json > next.json
 
