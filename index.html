@@ -81,6 +81,25 @@
   a.signup { color: var(--accent); font-weight: 650; text-decoration: none; white-space: nowrap; }
   a.signup:hover { text-decoration: underline; }
   .empty { padding: 22px 18px; color: var(--muted); }
+
+  /* Below ~700px a 5-column table pushes Seats off-screen, which is the one
+     column worth reading. Stack each row into a labelled card instead. */
+  @media (max-width: 700px) {
+    .scroll { overflow-x: visible; }
+    table { min-width: 0; display: block; }
+    thead { display: none; }
+    tbody, tr, td { display: block; width: 100%; }
+    tr { padding: 13px 16px; border-bottom: 1px solid var(--line); }
+    tbody tr:last-child { border-bottom: 0; }
+    td { border: 0; padding: 2px 0; }
+    td.ev { font-size: 15px; padding-bottom: 6px; white-space: normal; }
+    td.when { color: var(--muted); font-size: 13px; }
+    td.seat, td.price { display: inline-block; width: auto; }
+    td.seat { margin-right: 16px; }
+    td.seat .sub2 { display: inline; margin-left: 6px; }
+    td[data-l="Sign up"] { padding-top: 9px; }
+    a.signup { display: inline-block; padding: 7px 14px; border: 1px solid var(--accent); border-radius: 7px; }
+  }
   footer { margin-top: 34px; color: var(--muted); font-size: 12.5px; line-height: 1.6; }
   footer a { color: inherit; }
 </style>
@@ -167,15 +186,15 @@ function seatCell(e) {
   const cap = e.max_join_count;
   const app = e.count_applicants;
   if (app === null || app === undefined) {
-    return '<td class="seat unknown">? / ' + esc(cap) + '<span class="sub2">count unavailable</span></td>';
+    return '<td class="seat unknown" data-l="Seats">? / ' + esc(cap) + '<span class="sub2">count unavailable</span></td>';
   }
   const left = cap - app;
   if (left > 0) {
-    return '<td class="seat open">' + left + " seat" + (left === 1 ? "" : "s") + " left" +
+    return '<td class="seat open" data-l="Seats">' + left + " seat" + (left === 1 ? "" : "s") + " left" +
            '<span class="sub2">' + app + " of " + cap + " taken</span></td>";
   }
   const deep = app - cap;
-  return '<td class="seat full">Waitlist' + (deep > 0 ? " ~" + deep + " deep" : "") +
+  return '<td class="seat full" data-l="Seats">Waitlist' + (deep > 0 ? " ~" + deep + " deep" : "") +
          '<span class="sub2">' + app + " applied / " + cap + " seats</span></td>";
 }
 
@@ -206,11 +225,11 @@ function render(events, meta) {
           const w = fmtWhen(e.start_datetime);
           const p = fmtPrice(e);
           return "<tr>" +
-            '<td class="when"><span class="day">' + w.day + "</span> " + w.date + "<br>" + w.time + "</td>" +
-            '<td class="ev">' + esc(e.event_series_title || "") + "</td>" +
+            '<td class="when" data-l="When"><span class="day">' + w.day + "</span> " + w.date + " · " + w.time + "</td>" +
+            '<td class="ev" data-l="Event">' + esc(e.event_series_title || "") + "</td>" +
             seatCell(e) +
-            '<td class="price' + (p.free ? " free" : "") + '">' + p.txt + "</td>" +
-            '<td><a class="signup" href="' + esc(e.url) + '" target="_blank" rel="noopener">Open &rarr;</a></td>' +
+            '<td class="price' + (p.free ? " free" : "") + '" data-l="Price">' + p.txt + "</td>" +
+            '<td data-l="Sign up"><a class="signup" href="' + esc(e.url) + '" target="_blank" rel="noopener">Open &rarr;</a></td>' +
             "</tr>";
         }).join("") +
         "</tbody></table></div>";
