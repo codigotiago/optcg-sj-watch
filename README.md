@@ -31,3 +31,10 @@ https://api.bandai-tcg-plus.com/api/user/event/list?game_title_id=4&country_code
 `apply_start_datetime` is the field that matters: it's when signups open.
 
 Run it by hand any time from the Actions tab (`workflow_dispatch`).
+
+## The routine
+
+Claude Code routine `trig_01QbduLhEoisvbxcet4DgwcT` — "One Piece San Jose event watch",
+cron `5 7 * * *` (UTC). Manage at https://claude.ai/code/routines
+
+Emails go to santiagoblair@gmail.com via the Gmail connector. No new events, no email.
