@@ -29,16 +29,19 @@ few seconds.
 
 ## How the watcher works
 
-Three times a day:
+Four times a day:
 
-1. `.github/workflows/fetch.yml` runs at 23:45, 06:45 and 15:45 UTC (4:45pm, 11:45pm and
-   8:45am PDT),
+1. `.github/workflows/fetch.yml` runs at 23:45, 02:45, 06:45 and 15:45 UTC (4:45pm,
+   7:45pm, 11:45pm and 8:45am PDT),
    calls the API, and commits `events.json`. Every event carries `first_seen_at` — the
    time this workflow first observed that id. It never changes afterwards.
-2. A Claude Code routine runs at 00:05, 07:05 and 16:05 UTC (5:05pm, 12:05am and 9:05am
-   PDT), reads
-   `events.json`, and emails any event whose `first_seen_at` is within 26 hours.
-   No new events, no email.
+2. A Claude Code routine runs at 00:05, 03:05, 07:05 and 16:05 UTC (5:05pm, 8:05pm,
+   12:05am and 9:05am PDT), reads `events.json`, and emails any event whose
+   `first_seen_at` is within 20 hours. No new events, no email.
+
+   The window is 20h rather than 26h: the longest gap between runs is 9 hours, so 20h
+   still survives a completely missed run while cutting repeat alerts. Event alerts go
+   to Santiago and Christina; failure notices go to Santiago only.
 
 The 20-minute gap absorbs raw.githubusercontent.com's ~5 minute CDN TTL (which ignores
 cache-busting) and GitHub's habit of running scheduled workflows late.
@@ -76,4 +79,5 @@ Run it by hand any time from the Actions tab (`workflow_dispatch`).
 Claude Code routine `trig_01QbduLhEoisvbxcet4DgwcT` — "One Piece San Jose event watch",
 cron `5 7 * * *` (UTC). Manage at https://claude.ai/code/routines
 
-Emails go to santiagoblair@gmail.com via the Gmail connector. No new events, no email.
+Alerts go to santiagoblair@gmail.com and zoo.christina@gmail.com via the Gmail
+connector. No new events, no email.
