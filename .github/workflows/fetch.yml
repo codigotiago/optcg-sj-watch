@@ -52,6 +52,32 @@ jobs:
           rm -f sj.json ca.json
           jq -r '"fetched \(.success.event_list | length) events across both stores"' raw.json
 
+      - name: Fetch applicant counts
+        run: |
+          set -euo pipefail
+          UA='User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
+          ACCEPT='Accept: application/json'
+          REFERER='Referer: https://www.bandai-tcg-plus.com/'
+
+          # count_applicants only exists on the per-event endpoint, so this is
+          # one request per event. Seats are first-come-first-served, so how
+          # full an event already is decides whether signing up means a seat or
+          # a 6am queue for a no-show.
+          : > counts.jsonl
+          for id in $(jq -r '.success.event_list[].id' raw.json); do
+            if curl -sSf --max-time 20 -H "$UA" -H "$ACCEPT" -H "$REFERER"                  "https://api.bandai-tcg-plus.com/api/user/event/$id" -o one.json; then
+              jq -c --argjson id "$id" '{id: $id, count_applicants: (.success.count_applicants // null)}' one.json >> counts.jsonl
+            else
+              # A miss must not fail the run - a missing count still leaves a
+              # usable alert. null renders as "unknown" rather than a wrong number.
+              echo "{\"id\": $id, \"count_applicants\": null}" >> counts.jsonl
+              echo "count lookup failed for $id" >&2
+            fi
+            sleep 0.4
+          done
+          rm -f one.json
+          jq -s 'map(select(.count_applicants != null)) | length' counts.jsonl             | xargs -I{} echo "got applicant counts for {} events"
+
       - name: Stamp first_seen_at
         run: |
           set -euo pipefail
@@ -68,9 +94,11 @@ jobs:
           else
             echo '[]' > prev_seen.json
           fi
+          jq -s 'map({key: (.id|tostring), value: .count_applicants}) | from_entries' counts.jsonl > counts.json
 
-          jq --slurpfile prev prev_seen.json --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '
+          jq --slurpfile prev prev_seen.json --slurpfile counts counts.json --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '
             ($prev[0] | map({key: (.id|tostring), value: .first_seen_at}) | from_entries) as $seen
+            | ($counts[0]) as $napp
             | { fetched_at: $ts,
                 total: (.success.total // 0),
                 events: [ .success.event_list[] |
@@ -84,11 +112,14 @@ jobs:
                     organizer_id, organizer_name,
                     store: (if (.organizer_id == 9297) then "San Jose (walk)" else "CardArt Sunnyvale (drive)" end),
                     url: ("https://www.bandai-tcg-plus.com/event/" + (.id|tostring)),
-                    first_seen_at: ($seen[(.id|tostring)] // $ts) } ] }
+                    first_seen_at: ($seen[(.id|tostring)] // $ts),
+                    count_applicants: $napp[(.id|tostring)],
+                    seats_left: (if $napp[(.id|tostring)] == null then null
+                                 else (.max_join_count - $napp[(.id|tostring)]) end) } ] }
           ' raw.json > next.json
 
           mv next.json events.json
-          rm -f raw.json prev_seen.json
+          rm -f raw.json prev_seen.json counts.json counts.jsonl
           jq -r '.fetched_at as $t | "\(.total) events, \([.events[] | select(.first_seen_at == $t)] | length) first seen this run, at \($t)"' events.json
 
       - name: Commit
