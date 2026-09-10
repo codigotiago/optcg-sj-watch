@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>South Bay One Piece Events</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --panel: #ffffff;
+    --ink: #1a1a1a;
+    --muted: #6b6b6b;
+    --line: #e2e0da;
+    --accent: #b3261e;
+    --ok-bg: #e6f4ea;
+    --ok-ink: #14532d;
+    --warn-bg: #fdf3e2;
+    --warn-ink: #7a4a00;
+    --full-ink: #7f1d1d;
+    --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 14px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16161a;
+      --panel: #1e1e23;
+      --ink: #ececec;
+      --muted: #9a9aa4;
+      --line: #2f2f37;
+      --accent: #ff6b5e;
+      --ok-bg: #10301c;
+      --ok-ink: #86efac;
+      --warn-bg: #33260f;
+      --warn-ink: #fcd34d;
+      --full-ink: #fca5a5;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 18px 64px; }
+
+  header { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; justify-content: space-between; }
+  h1 { font-size: 26px; margin: 0; letter-spacing: -.02em; }
+  .sub { color: var(--muted); font-size: 13.5px; margin: 4px 0 0; }
+
+  button {
+    font: inherit; font-weight: 600; color: #fff; background: var(--accent);
+    border: 0; border-radius: 8px; padding: 9px 16px; cursor: pointer;
+  }
+  button:hover { filter: brightness(1.07); }
+  button:disabled { opacity: .55; cursor: default; filter: none; }
+  .status { font-size: 13px; color: var(--muted); min-height: 1.4em; margin-top: 10px; }
+
+  .store { margin-top: 26px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+  .store-head { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .store-head h2 { margin: 0; font-size: 17px; letter-spacing: -.01em; }
+  .store-head .addr { color: var(--muted); font-size: 13px; margin-top: 3px; }
+  .pill { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; vertical-align: 2px; margin-left: 8px; }
+  .pill.walk { background: var(--ok-bg); color: var(--ok-ink); }
+  .pill.drive { background: var(--warn-bg); color: var(--warn-ink); }
+
+  .scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 700px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 700; background: var(--bg); }
+  tbody tr:last-child td { border-bottom: 0; }
+  .when { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .when .day { color: var(--muted); }
+  .ev { font-weight: 600; }
+  .seat { white-space: nowrap; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .seat.open { color: var(--ok-ink); }
+  .seat.full { color: var(--full-ink); }
+  .seat.unknown { color: var(--muted); font-weight: 400; }
+  .seat .sub2 { display: block; font-weight: 400; font-size: 12px; color: var(--muted); }
+  .price { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .price.free { color: var(--ok-ink); font-weight: 650; }
+  a.signup { color: var(--accent); font-weight: 650; text-decoration: none; white-space: nowrap; }
+  a.signup:hover { text-decoration: underline; }
+  .empty { padding: 22px 18px; color: var(--muted); }
+  footer { margin-top: 34px; color: var(--muted); font-size: 12.5px; line-height: 1.6; }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>South Bay One Piece Events</h1>
+      <p class="sub" id="sub">Loading&hellip;</p>
+    </div>
+    <button id="refresh">Refresh from Bandai</button>
+  </header>
+  <div class="status" id="status"></div>
+  <div id="stores"></div>
+  <footer>
+    Upcoming events only &mdash; anything already started is hidden.
+    Seats are first-come-first-served: past capacity you join a waitlist.
+    <br>The page loads a cached snapshot instantly. <strong>Refresh from Bandai</strong> queries the live API,
+    which takes a few seconds because each event's applicant count is a separate request.
+    <br>Data and source: <a href="https://github.com/codigotiago/optcg-sj-watch">codigotiago/optcg-sj-watch</a>
+  </footer>
+</div>
+
+<script>
+const STORES = [
+  { id: 9297, name: "ONE PIECE CARD GAME Official Shop San Jose", addr: "675 Saratoga Ave, San Jose", tag: "5 min walk", cls: "walk" },
+  { id: 1339, name: "CardArt", addr: "781 E El Camino Real Suite 100, Sunnyvale", tag: "10-15 min drive", cls: "drive" }
+];
+const LIST_API = "https://api.bandai-tcg-plus.com/api/user/event/list";
+const EVENT_API = "https://api.bandai-tcg-plus.com/api/user/event/";
+const SNAPSHOT = "events.json";
+
+const statusEl = document.getElementById("status");
+const subEl = document.getElementById("sub");
+const btn = document.getElementById("refresh");
+
+// start_datetime is wall-clock local to the store (America/Los_Angeles) and carries
+// no offset, so compare it as a string against "now" formatted the same way. This
+// keeps the cutoff correct regardless of the viewer's own timezone.
+function laNowKey() {
+  const p = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit",
+    day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false
+  }).formatToParts(new Date()).reduce(function (a, x) { a[x.type] = x.value; return a; }, {});
+  return p.year + "-" + p.month + "-" + p.day + "T" + p.hour + ":" + p.minute;
+}
+function isUpcoming(e) {
+  return String(e.start_datetime || "").slice(0, 16) >= laNowKey();
+}
+
+function fmtWhen(s) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(String(s || ""));
+  if (!m) return { date: String(s || "?"), day: "", time: "" };
+  const dt = new Date(+m[1], +m[2] - 1, +m[3]);
+  let hh = +m[4];
+  const ampm = hh >= 12 ? "PM" : "AM";
+  hh = hh % 12 || 12;
+  return {
+    day: dt.toLocaleDateString("en-US", { weekday: "short" }),
+    date: dt.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+    time: hh + ":" + m[5] + " " + ampm
+  };
+}
+
+function fmtPrice(e) {
+  const n = parseFloat(e.entryFee);
+  if (!isFinite(n)) return { txt: "—", free: false };
+  if (n === 0) return { txt: "Free", free: true };
+  const cur = e.entry_fee_currency_code === "USD" ? "$" : (e.entry_fee_currency_code || "") + " ";
+  return { txt: cur + n.toFixed(2).replace(/\.00$/, ""), free: false };
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+
+function seatCell(e) {
+  const cap = e.max_join_count;
+  const app = e.count_applicants;
+  if (app === null || app === undefined) {
+    return '<td class="seat unknown">? / ' + esc(cap) + '<span class="sub2">count unavailable</span></td>';
+  }
+  const left = cap - app;
+  if (left > 0) {
+    return '<td class="seat open">' + left + " seat" + (left === 1 ? "" : "s") + " left" +
+           '<span class="sub2">' + app + " of " + cap + " taken</span></td>";
+  }
+  const deep = app - cap;
+  return '<td class="seat full">Waitlist' + (deep > 0 ? " ~" + deep + " deep" : "") +
+         '<span class="sub2">' + app + " applied / " + cap + " seats</span></td>";
+}
+
+function render(events, meta) {
+  const host = document.getElementById("stores");
+  host.innerHTML = "";
+  let shown = 0;
+
+  STORES.forEach(function (st) {
+    const rows = events.filter(function (e) {
+      return Number(e.organizer_id) === st.id && isUpcoming(e) && !e.is_canceled;
+    }).sort(function (a, b) {
+      return String(a.start_datetime).localeCompare(String(b.start_datetime));
+    });
+    shown += rows.length;
+
+    const sec = document.createElement("section");
+    sec.className = "store";
+    let html = '<div class="store-head"><h2>' + esc(st.name) +
+      '<span class="pill ' + st.cls + '">' + st.tag + "</span></h2>" +
+      '<div class="addr">' + esc(st.addr) + "</div></div>";
+
+    if (rows.length) {
+      html += '<div class="scroll"><table><thead><tr>' +
+        "<th>When</th><th>Event</th><th>Seats</th><th>Price</th><th>Sign up</th>" +
+        "</tr></thead><tbody>" +
+        rows.map(function (e) {
+          const w = fmtWhen(e.start_datetime);
+          const p = fmtPrice(e);
+          return "<tr>" +
+            '<td class="when"><span class="day">' + w.day + "</span> " + w.date + "<br>" + w.time + "</td>" +
+            '<td class="ev">' + esc(e.event_series_title || "") + "</td>" +
+            seatCell(e) +
+            '<td class="price' + (p.free ? " free" : "") + '">' + p.txt + "</td>" +
+            '<td><a class="signup" href="' + esc(e.url) + '" target="_blank" rel="noopener">Open &rarr;</a></td>' +
+            "</tr>";
+        }).join("") +
+        "</tbody></table></div>";
+    } else {
+      html += '<div class="empty">No upcoming events listed. When the next season drops it will appear here.</div>';
+    }
+    sec.innerHTML = html;
+    host.appendChild(sec);
+  });
+
+  subEl.textContent = shown + " upcoming event" + (shown === 1 ? "" : "s") + " · " + meta;
+}
+
+function agoText(iso) {
+  const t = Date.parse(iso);
+  if (!isFinite(t)) return "cached snapshot";
+  const mins = Math.round((Date.now() - t) / 60000);
+  if (mins < 1) return "snapshot from just now";
+  if (mins < 60) return "snapshot from " + mins + " min ago";
+  const h = Math.round(mins / 60);
+  if (h < 36) return "snapshot from " + h + " hour" + (h === 1 ? "" : "s") + " ago";
+  return "snapshot from " + Math.round(h / 24) + " days ago";
+}
+
+function loadSnapshot() {
+  return fetch(SNAPSHOT + "?cb=" + Date.now(), { cache: "no-store" })
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(function (d) { render(d.events || [], agoText(d.fetched_at)); })
+    .catch(function (err) {
+      statusEl.textContent = "Could not load the cached snapshot (" + err.message + "). Try Refresh from Bandai.";
+      render([], "no cached data");
+    });
+}
+
+function liveRefresh() {
+  btn.disabled = true;
+  const started = Date.now();
+  let all = [];
+
+  statusEl.textContent = "Fetching event lists…";
+
+  const listJobs = STORES.map(function (st) {
+    const u = LIST_API + "?game_title_id=4&country_code[]=US&organizer_id=" + st.id +
+              "&limit=100&offset=0&order=1";
+    return fetch(u, { headers: { "Accept": "application/json" } }).then(function (r) {
+      if (!r.ok) throw new Error(st.name + ": HTTP " + r.status);
+      return r.json();
+    }).then(function (d) {
+      return (d.success && d.success.event_list) || [];
+    });
+  });
+
+  Promise.all(listJobs).then(function (lists) {
+    lists.forEach(function (l) { all = all.concat(l); });
+    all = all.map(function (e) {
+      e.url = "https://www.bandai-tcg-plus.com/event/" + e.id;
+      e.count_applicants = null;
+      return e;
+    });
+
+    // Show the schedule straight away; counts are one request per event.
+    render(all, "live — loading seat counts…");
+
+    const upcoming = all.filter(function (e) { return isUpcoming(e) && !e.is_canceled; });
+    let done = 0;
+
+    return upcoming.reduce(function (chain, e) {
+      return chain.then(function () {
+        statusEl.textContent = "Seat counts " + (done + 1) + " / " + upcoming.length + "…";
+        return fetch(EVENT_API + e.id, { headers: { "Accept": "application/json" } })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (d) {
+            const c = d && d.success && d.success.count_applicants;
+            if (typeof c === "number") e.count_applicants = c;
+          })
+          .catch(function () { /* leave null: renders as "count unavailable" */ })
+          .then(function () {
+            done++;
+            if (done % 4 === 0) render(all, "live — loading seat counts…");
+          });
+      });
+    }, Promise.resolve());
+  }).then(function () {
+    render(all, "live, just now");
+    statusEl.textContent = "Refreshed in " + Math.round((Date.now() - started) / 1000) + "s.";
+  }).catch(function (err) {
+    statusEl.textContent = "Live refresh failed (" + err.message + "). Showing cached data instead.";
+    loadSnapshot();
+  }).then(function () {
+    btn.disabled = false;
+  });
+}
+
+btn.addEventListener("click", liveRefresh);
+loadSnapshot();
+</script>
+</body>
+</html>

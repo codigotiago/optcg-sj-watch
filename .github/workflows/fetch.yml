@@ -2,6 +2,8 @@ name: Fetch OPCG San Jose events
 
 on:
   schedule:
+    # 23:45 UTC = 4:45pm PDT. Routine reads the result at 00:05 (5:05pm).
+    - cron: "45 23 * * *"
     # 06:45 UTC = 11:45pm PDT. Routine reads the result at 07:05 (12:05am).
     - cron: "45 6 * * *"
     # 15:45 UTC = 8:45am PDT. Routine reads the result at 16:05 (9:05am).
