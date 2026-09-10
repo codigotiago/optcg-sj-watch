@@ -18,9 +18,13 @@ jobs:
       - name: Fetch event list from Bandai TCG+
         run: |
           set -euo pipefail
+          # The API 403s a bare curl UA; it needs a browser-like User-Agent.
+          UA='User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
+          ACCEPT='Accept: application/json'
+          REFERER='Referer: https://www.bandai-tcg-plus.com/'
           URL='https://api.bandai-tcg-plus.com/api/user/event/list?game_title_id=4&country_code[]=US&organizer_id=9297&limit=100&offset=0&order=1'
           for attempt in 1 2 3; do
-            if curl -sSf --max-time 30 "$URL" -o raw.json; then
+            if curl -sSf --max-time 30 -H "$UA" -H "$ACCEPT" -H "$REFERER" "$URL" -o raw.json; then
               break
             fi
             echo "attempt $attempt failed" >&2
