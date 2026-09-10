@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-10T09:45:41Z",
+  "fetched_at": "2026-09-10T09:55:21Z",
   "total": 24,
   "events": [
     {
@@ -19,11 +19,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366753",
-      "first_seen_at": "2026-06-15T23:59:48+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366753",
+      "first_seen_at": "2026-06-15T23:59:48+00:00"
     },
     {
       "id": 7763906,
@@ -42,11 +42,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7763906",
-      "first_seen_at": "2026-07-27T20:29:37+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7763906",
+      "first_seen_at": "2026-07-27T20:29:37+00:00"
     },
     {
       "id": 7366735,
@@ -65,11 +65,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366735",
-      "first_seen_at": "2026-06-15T23:54:57+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366735",
+      "first_seen_at": "2026-06-15T23:54:57+00:00"
     },
     {
       "id": 7763907,
@@ -88,11 +88,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7763907",
-      "first_seen_at": "2026-07-27T20:29:37+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7763907",
+      "first_seen_at": "2026-07-27T20:29:37+00:00"
     },
     {
       "id": 7366736,
@@ -111,11 +111,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366736",
-      "first_seen_at": "2026-06-15T23:54:57+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366736",
+      "first_seen_at": "2026-06-15T23:54:57+00:00"
     },
     {
       "id": 7366737,
@@ -134,11 +134,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366737",
-      "first_seen_at": "2026-06-15T23:54:57+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366737",
+      "first_seen_at": "2026-06-15T23:54:57+00:00"
     },
     {
       "id": 7366738,
@@ -157,11 +157,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366738",
-      "first_seen_at": "2026-06-15T23:54:58+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366738",
+      "first_seen_at": "2026-06-15T23:54:58+00:00"
     },
     {
       "id": 7366739,
@@ -180,11 +180,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366739",
-      "first_seen_at": "2026-06-15T23:54:58+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366739",
+      "first_seen_at": "2026-06-15T23:54:58+00:00"
     },
     {
       "id": 7366763,
@@ -203,11 +203,11 @@
       "entry_fee_currency_code": "usd",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366763",
-      "first_seen_at": "2026-06-16T00:03:40+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366763",
+      "first_seen_at": "2026-06-16T00:03:40+00:00"
     },
     {
       "id": 7763908,
@@ -226,11 +226,11 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7763908",
-      "first_seen_at": "2026-07-27T20:29:37+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7763908",
+      "first_seen_at": "2026-07-27T20:29:37+00:00"
     },
     {
       "id": 7366740,
@@ -249,16 +249,16 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366740",
-      "first_seen_at": "2026-06-15T23:54:58+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366740",
+      "first_seen_at": "2026-06-15T23:54:58+00:00"
     },
     {
       "id": 7366771,
       "event_series_title": "[Official Shop] Kid's Cup",
-      "excerpt": "Kid\u2019s Cup \u2013 store tournaments designed exclusively for kids aged 6-16! All skill levels are welcome, and staff will be available to provide guidance.",
+      "excerpt": "Kid’s Cup – store tournaments designed exclusively for kids aged 6-16! All skill levels are welcome, and staff will be available to provide guidance.",
       "start_datetime": "2026-09-27T15:00:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-06-17T14:00:00+00:00",
@@ -272,11 +272,11 @@
       "entry_fee_currency_code": "usd",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7366771",
-      "first_seen_at": "2026-06-16T00:06:13+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7366771",
+      "first_seen_at": "2026-06-16T00:06:13+00:00"
     },
     {
       "id": 7664866,
@@ -295,16 +295,16 @@
       "entry_fee_currency_code": "USD",
       "street_address": "675 Saratoga Ave",
       "city_code": "San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/detail/7664866",
-      "first_seen_at": "2026-07-17T18:05:34+00:00",
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)"
+      "store": "San Jose (walk)",
+      "url": "https://www.bandai-tcg-plus.com/event/detail/7664866",
+      "first_seen_at": "2026-07-17T18:05:34+00:00"
     },
     {
       "id": 6906806,
       "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-09-15T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-06-17T14:00:00+00:00",
@@ -327,7 +327,7 @@
     {
       "id": 7696195,
       "event_series_title": "Pirates Party 2026 Vol.3",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-09-15T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-08-17T19:00:00+00:00",
@@ -350,7 +350,7 @@
     {
       "id": 6906807,
       "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-09-22T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-06-17T14:00:00+00:00",
@@ -373,7 +373,7 @@
     {
       "id": 7696196,
       "event_series_title": "Pirates Party 2026 Vol.3",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-09-22T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-08-17T19:00:00+00:00",
@@ -396,7 +396,7 @@
     {
       "id": 6906808,
       "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-09-29T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-06-17T14:00:00+00:00",
@@ -419,7 +419,7 @@
     {
       "id": 7597960,
       "event_series_title": "ONE PIECE CARD GAME Extra Grand Battle for Stores 2026 September-October",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-09-29T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-09-01T19:00:00+00:00",
@@ -442,7 +442,7 @@
     {
       "id": 7696197,
       "event_series_title": "Pirates Party 2026 Vol.3",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-09-29T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-08-17T19:00:00+00:00",
@@ -465,7 +465,7 @@
     {
       "id": 7696198,
       "event_series_title": "Pirates Party 2026 Vol.3",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-10-06T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-08-17T19:00:00+00:00",
@@ -488,7 +488,7 @@
     {
       "id": 7696199,
       "event_series_title": "Pirates Party 2026 Vol.3",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-10-13T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-08-17T19:00:00+00:00",
@@ -511,7 +511,7 @@
     {
       "id": 7696200,
       "event_series_title": "Pirates Party 2026 Vol.3",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-10-20T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-08-17T19:00:00+00:00",
@@ -534,7 +534,7 @@
     {
       "id": 7696194,
       "event_series_title": "Pirates Party 2026 Vol.3",
-      "excerpt": "",
+      "excerpt": null,
       "start_datetime": "2026-09-08T18:30:00",
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-08-17T19:00:00+00:00",
