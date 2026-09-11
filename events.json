@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-11T07:28:46Z",
+  "fetched_at": "2026-09-11T11:48:44Z",
   "total": 23,
   "events": [
     {
@@ -24,8 +24,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366753",
       "first_seen_at": "2026-06-15T23:59:48+00:00",
-      "count_applicants": 223,
-      "seats_left": -191
+      "count_applicants": 220,
+      "seats_left": -188
     },
     {
       "id": 7763906,
