@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-12T07:20:57Z",
+  "fetched_at": "2026-09-12T11:15:16Z",
   "total": 22,
   "events": [
     {
@@ -324,8 +324,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/6906806",
       "first_seen_at": "2026-05-04T23:09:21+00:00",
-      "count_applicants": 36,
-      "seats_left": -4
+      "count_applicants": 35,
+      "seats_left": -3
     },
     {
       "id": 7696195,
