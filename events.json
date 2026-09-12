@@ -1,6 +1,6 @@
 {
-  "fetched_at": "2026-09-12T01:34:17Z",
-  "total": 23,
+  "fetched_at": "2026-09-12T07:20:57Z",
+  "total": 22,
   "events": [
     {
       "id": 7763906,
@@ -24,8 +24,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763906",
       "first_seen_at": "2026-07-27T20:29:37+00:00",
-      "count_applicants": 46,
-      "seats_left": -30
+      "count_applicants": 45,
+      "seats_left": -29
     },
     {
       "id": 7366735,
@@ -49,8 +49,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366735",
       "first_seen_at": "2026-06-15T23:54:57+00:00",
-      "count_applicants": 62,
-      "seats_left": -30
+      "count_applicants": 61,
+      "seats_left": -29
     },
     {
       "id": 7763907,
@@ -74,8 +74,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763907",
       "first_seen_at": "2026-07-27T20:29:37+00:00",
-      "count_applicants": 40,
-      "seats_left": -24
+      "count_applicants": 39,
+      "seats_left": -23
     },
     {
       "id": 7366736,
@@ -99,8 +99,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366736",
       "first_seen_at": "2026-06-15T23:54:57+00:00",
-      "count_applicants": 50,
-      "seats_left": -18
+      "count_applicants": 49,
+      "seats_left": -17
     },
     {
       "id": 7366737,
@@ -301,31 +301,6 @@
       "first_seen_at": "2026-07-17T18:05:34+00:00",
       "count_applicants": 221,
       "seats_left": -189
-    },
-    {
-      "id": 7366753,
-      "event_series_title": "[Official Shop] Sealed Battle",
-      "excerpt": "The format is Sealed. Players will purchase six booster packs at the event and construct a 40-card deck on the spot. (There are no color restrictions; players will receive a 6-color leader card that must be used at this event.) Players need to bring 10 DON!! cards with you.",
-      "start_datetime": "2026-09-11T17:30:00",
-      "timezone": "America/Los_Angeles",
-      "apply_start_datetime": "2026-06-17T14:00:00+00:00",
-      "event_created_at": "2026-06-15T23:59:48+00:00",
-      "event_updated_at": "2026-09-12T00:40:06+00:00",
-      "max_join_count": 32,
-      "is_over_max_join_count": false,
-      "applicationOpen": "2",
-      "is_canceled": false,
-      "entryFee": "0.000",
-      "entry_fee_currency_code": "USD",
-      "street_address": "675 Saratoga Ave",
-      "city_code": "San Jose",
-      "organizer_id": 9297,
-      "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "store": "San Jose (walk)",
-      "url": "https://www.bandai-tcg-plus.com/event/7366753",
-      "first_seen_at": "2026-06-15T23:59:48+00:00",
-      "count_applicants": 206,
-      "seats_left": -174
     },
     {
       "id": 6906806,
