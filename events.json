@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-14T01:41:33Z",
+  "fetched_at": "2026-09-14T08:06:41Z",
   "total": 20,
   "events": [
     {
@@ -24,8 +24,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763907",
       "first_seen_at": "2026-07-27T20:29:37+00:00",
-      "count_applicants": 44,
-      "seats_left": -28
+      "count_applicants": 42,
+      "seats_left": -26
     },
     {
       "id": 7366736,
@@ -274,8 +274,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/6906806",
       "first_seen_at": "2026-05-04T23:09:21+00:00",
-      "count_applicants": 36,
-      "seats_left": -4
+      "count_applicants": 37,
+      "seats_left": -5
     },
     {
       "id": 7696195,
@@ -399,8 +399,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
       "first_seen_at": "2026-07-07T21:38:08+00:00",
-      "count_applicants": 97,
-      "seats_left": -65
+      "count_applicants": 98,
+      "seats_left": -66
     },
     {
       "id": 7696197,
