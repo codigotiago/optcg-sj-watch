@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-15T12:07:03Z",
+  "fetched_at": "2026-09-15T19:11:57Z",
   "total": 20,
   "events": [
     {
@@ -24,8 +24,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763907",
       "first_seen_at": "2026-07-27T20:29:37+00:00",
-      "count_applicants": 41,
-      "seats_left": -25
+      "count_applicants": 42,
+      "seats_left": -26
     },
     {
       "id": 7366736,
@@ -249,8 +249,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7664866",
       "first_seen_at": "2026-07-17T18:05:34+00:00",
-      "count_applicants": 234,
-      "seats_left": -202
+      "count_applicants": 235,
+      "seats_left": -203
     },
     {
       "id": 6906806,
@@ -274,8 +274,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/6906806",
       "first_seen_at": "2026-05-04T23:09:21+00:00",
-      "count_applicants": 46,
-      "seats_left": -14
+      "count_applicants": 48,
+      "seats_left": -16
     },
     {
       "id": 7696195,
@@ -299,8 +299,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696195",
       "first_seen_at": "2026-07-20T22:11:20+00:00",
-      "count_applicants": 12,
-      "seats_left": 4
+      "count_applicants": 14,
+      "seats_left": 2
     },
     {
       "id": 6906807,
@@ -349,8 +349,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696196",
       "first_seen_at": "2026-07-20T22:11:20+00:00",
-      "count_applicants": 4,
-      "seats_left": 12
+      "count_applicants": 5,
+      "seats_left": 11
     },
     {
       "id": 6906808,
@@ -399,8 +399,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
       "first_seen_at": "2026-07-07T21:38:08+00:00",
-      "count_applicants": 101,
-      "seats_left": -69
+      "count_applicants": 102,
+      "seats_left": -70
     },
     {
       "id": 7696197,
