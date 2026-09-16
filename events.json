@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-15T19:11:57Z",
+  "fetched_at": "2026-09-16T01:41:03Z",
   "total": 20,
   "events": [
     {
@@ -99,8 +99,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366738",
       "first_seen_at": "2026-06-15T23:54:58+00:00",
-      "count_applicants": 60,
-      "seats_left": -28
+      "count_applicants": 61,
+      "seats_left": -29
     },
     {
       "id": 7366739,
@@ -174,8 +174,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763908",
       "first_seen_at": "2026-07-27T20:29:37+00:00",
-      "count_applicants": 46,
-      "seats_left": -30
+      "count_applicants": 45,
+      "seats_left": -29
     },
     {
       "id": 7366740,
@@ -199,8 +199,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366740",
       "first_seen_at": "2026-06-15T23:54:58+00:00",
-      "count_applicants": 60,
-      "seats_left": -28
+      "count_applicants": 59,
+      "seats_left": -27
     },
     {
       "id": 7366771,
@@ -249,33 +249,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7664866",
       "first_seen_at": "2026-07-17T18:05:34+00:00",
-      "count_applicants": 235,
-      "seats_left": -203
-    },
-    {
-      "id": 6906806,
-      "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
-      "excerpt": null,
-      "start_datetime": "2026-09-15T18:30:00",
-      "timezone": "America/Los_Angeles",
-      "apply_start_datetime": "2026-06-17T14:00:00+00:00",
-      "event_created_at": "2026-05-04T23:09:21+00:00",
-      "event_updated_at": "2026-09-09T01:32:54+00:00",
-      "max_join_count": 32,
-      "is_over_max_join_count": false,
-      "applicationOpen": "1",
-      "is_canceled": false,
-      "entryFee": "10.000",
-      "entry_fee_currency_code": "$",
-      "street_address": "781 E El Camino Real Suite 100",
-      "city_code": "Sunnyvale",
-      "organizer_id": 1339,
-      "organizer_name": "CardArt",
-      "store": "CardArt Sunnyvale (drive)",
-      "url": "https://www.bandai-tcg-plus.com/event/6906806",
-      "first_seen_at": "2026-05-04T23:09:21+00:00",
-      "count_applicants": 48,
-      "seats_left": -16
+      "count_applicants": 239,
+      "seats_left": -207
     },
     {
       "id": 7696195,
@@ -299,8 +274,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696195",
       "first_seen_at": "2026-07-20T22:11:20+00:00",
-      "count_applicants": 14,
-      "seats_left": 2
+      "count_applicants": 9,
+      "seats_left": 7
     },
     {
       "id": 6906807,
@@ -399,8 +374,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
       "first_seen_at": "2026-07-07T21:38:08+00:00",
-      "count_applicants": 102,
-      "seats_left": -70
+      "count_applicants": 103,
+      "seats_left": -71
     },
     {
       "id": 7696197,
@@ -499,8 +474,33 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696200",
       "first_seen_at": "2026-07-20T22:11:20+00:00",
-      "count_applicants": 1,
-      "seats_left": 15
+      "count_applicants": 2,
+      "seats_left": 14
+    },
+    {
+      "id": 6906806,
+      "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
+      "excerpt": null,
+      "start_datetime": "2026-09-15T18:30:00",
+      "timezone": "America/Los_Angeles",
+      "apply_start_datetime": "2026-06-17T14:00:00+00:00",
+      "event_created_at": "2026-05-04T23:09:21+00:00",
+      "event_updated_at": "2026-09-16T01:37:43+00:00",
+      "max_join_count": 32,
+      "is_over_max_join_count": false,
+      "applicationOpen": "2",
+      "is_canceled": false,
+      "entryFee": "10.000",
+      "entry_fee_currency_code": "$",
+      "street_address": "781 E El Camino Real Suite 100",
+      "city_code": "Sunnyvale",
+      "organizer_id": 1339,
+      "organizer_name": "CardArt",
+      "store": "CardArt Sunnyvale (drive)",
+      "url": "https://www.bandai-tcg-plus.com/event/6906806",
+      "first_seen_at": "2026-05-04T23:09:21+00:00",
+      "count_applicants": 55,
+      "seats_left": -23
     }
   ]
 }
