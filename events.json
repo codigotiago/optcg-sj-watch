@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-16T19:04:52Z",
+  "fetched_at": "2026-09-17T01:42:40Z",
   "total": 19,
   "events": [
     {
@@ -24,8 +24,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7763907",
       "first_seen_at": "2026-07-27T20:29:37+00:00",
-      "count_applicants": 42,
-      "seats_left": -26
+      "count_applicants": 41,
+      "seats_left": -25
     },
     {
       "id": 7366736,
@@ -49,8 +49,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366736",
       "first_seen_at": "2026-06-15T23:54:57+00:00",
-      "count_applicants": 50,
-      "seats_left": -18
+      "count_applicants": 51,
+      "seats_left": -19
     },
     {
       "id": 7366737,
@@ -99,8 +99,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366738",
       "first_seen_at": "2026-06-15T23:54:58+00:00",
-      "count_applicants": 60,
-      "seats_left": -28
+      "count_applicants": 61,
+      "seats_left": -29
     },
     {
       "id": 7366739,
@@ -299,8 +299,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/6906807",
       "first_seen_at": "2026-05-04T23:09:21+00:00",
-      "count_applicants": 33,
-      "seats_left": -1
+      "count_applicants": 34,
+      "seats_left": -2
     },
     {
       "id": 7696196,
@@ -349,8 +349,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/6906808",
       "first_seen_at": "2026-05-04T23:09:21+00:00",
-      "count_applicants": 19,
-      "seats_left": 13
+      "count_applicants": 20,
+      "seats_left": 12
     },
     {
       "id": 7597960,
@@ -424,8 +424,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696198",
       "first_seen_at": "2026-07-20T22:11:20+00:00",
-      "count_applicants": 3,
-      "seats_left": 13
+      "count_applicants": 4,
+      "seats_left": 12
     },
     {
       "id": 7696199,
