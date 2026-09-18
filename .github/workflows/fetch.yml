@@ -2,17 +2,22 @@ name: Fetch OPCG San Jose events
 
 on:
   schedule:
-    # 23:45 UTC = 4:45pm PDT. Routine reads the result at 00:05 (5:05pm).
+    # Fetch, render and send all happen in this one job, so these times are
+    # simply when you get emailed. Retime them freely.
+    # 23:45 UTC = 4:45pm PT
     - cron: "45 23 * * *"
-    # 02:45 UTC = 7:45pm PDT. Routine reads the result at 03:05 (8:05pm).
+    # 02:45 UTC = 7:45pm PT
     - cron: "45 2 * * *"
-    # 06:45 UTC = 11:45pm PDT. Routine reads the result at 07:05 (12:05am).
+    # 06:45 UTC = 11:45pm PT
     - cron: "45 6 * * *"
-    # 15:45 UTC = 8:45am PDT. Routine reads the result at 16:05 (9:05am).
-    # The 20-minute gap absorbs raw.githubusercontent.com's ~5 min CDN TTL
-    # and GitHub's habit of running scheduled workflows late.
+    # 15:45 UTC = 8:45am PT
     - cron: "45 15 * * *"
   workflow_dispatch:
+    inputs:
+      force_all:
+        description: "Alert on every upcoming event, ignoring the ledger"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -86,13 +91,8 @@ jobs:
         run: |
           set -euo pipefail
           # Each event carries first_seen_at: the UTC time this workflow FIRST
-          # observed that id. It never changes afterwards, so the routine can
-          # ask "posted since when?" without needing state of its own.
-          #
-          # Deliberately NOT a diff against the previous snapshot: if a
-          # scheduled run lands late, a diff would mark the event new on a run
-          # nobody reads and clear it before the next one, losing the alert
-          # entirely. A stable stamp only ever risks a duplicate email.
+          # observed that id. It never changes afterwards. Dedup is now done by
+          # alerted.json, so this is metadata rather than the alert mechanism.
           if [ -f events.json ]; then
             jq '[.events[] | {id, first_seen_at}]' events.json > prev_seen.json
           else
@@ -114,7 +114,9 @@ jobs:
                     entryFee, entry_fee_currency_code,
                     street_address, city_code,
                     organizer_id, organizer_name,
-                    store: (if (.organizer_id == 9297) then "San Jose (walk)" else "CardArt Sunnyvale (drive)" end),
+                    store: (if (.organizer_id == 9297) then "San Jose (walk)"
+                            elif (.organizer_id == 1339) then "CardArt Sunnyvale (drive)"
+                            else .organizer_name end),
                     url: ("https://www.bandai-tcg-plus.com/event/" + (.id|tostring)),
                     first_seen_at: ($seen[(.id|tostring)] // $ts),
                     count_applicants: $napp[(.id|tostring)],
@@ -126,13 +128,24 @@ jobs:
           rm -f raw.json prev_seen.json counts.json counts.jsonl
           jq -r '.fetched_at as $t | "\(.total) events, \([.events[] | select(.first_seen_at == $t)] | length) first seen this run, at \($t)"' events.json
 
+      - name: Render and send the alert
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          ALERT_TO: ${{ secrets.ALERT_TO }}
+        run: |
+          set -euo pipefail
+          # Exits 0 whether or not it had anything to send. It only rewrites
+          # alerted.json after the send succeeds, so a failed send leaves the
+          # event unalerted and the next run retries it.
+          python3 alert.py ${{ inputs.force_all && '--force-all' || '' }}
+
       - name: Commit
         run: |
           set -euo pipefail
           git config user.name "opcg-watch-bot"
           git config user.email "actions@github.com"
-          git add events.json
-          # Always commit: fetched_at changes every run, and the routine relies on
-          # new_events being reset to [] once an alert has gone out.
+          git add events.json alerted.json
+          # Always commit: fetched_at changes every run.
           git commit -m "snapshot $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nothing to commit"
           git push
