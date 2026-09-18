@@ -217,6 +217,23 @@ def select_new(snapshot, alerted_ids, force_all):
     return rows
 
 
+# San Jose leads: it is the five-minute walk, so its open seats are the ones
+# worth seeing first. Only the open-seats section splits this way -- a lottery
+# or a waitlist is not something you act on by store.
+STORE_PRIORITY = (9297, 1339)
+
+
+def by_store(rows):
+    """-> [(store label, rows)], priority stores first, then anything else."""
+    groups = {}
+    for e in rows:
+        groups.setdefault(e.get("organizer_id"), []).append(e)
+    ordered = [oid for oid in STORE_PRIORITY if oid in groups]
+    ordered += [oid for oid in groups if oid not in STORE_PRIORITY]
+    return [(store_of(groups[oid][0])["short"], groups[oid])
+            for oid in ordered]
+
+
 def bucket(rows):
     out = {"open": [], "lottery": [], "waitlist": [], "unknown": []}
     for e in rows:
@@ -251,7 +268,7 @@ def _cell(content, extra=""):
     )
 
 
-def html_rows(rows):
+def html_rows(rows, show_store=True):
     out = []
     for e in rows:
         day, date, time = fmt_when(e.get("start_datetime"))
@@ -266,17 +283,28 @@ def html_rows(rows):
             % (MUTED, esc(day), esc(date), MUTED, esc(time))
         )
 
-        # The whole store/event block is the link, not just the title -- the
-        # title renders at 12px, which is a poor tap target on a phone. The
-        # title carries the accent so the row still reads as tappable; with no
-        # title, the store name takes it instead.
-        where = '<span style="color:%s">%s</span>' % (
-            ACCENT if not title else INK, esc(store_of(e)["short"]))
-        if title:
-            where += (
-                '<br><span style="color:%s;font-size:12px">%s</span>'
-                % (ACCENT, esc(title))
+        if show_store:
+            # Store name over the title, the title carrying the accent so the
+            # row reads as tappable.
+            where = '<span style="color:%s">%s</span>' % (
+                ACCENT if not title else INK, esc(store_of(e)["short"]))
+            if title:
+                where += (
+                    '<br><span style="color:%s;font-size:12px">%s</span>'
+                    % (ACCENT, esc(title))
+                )
+        else:
+            # The section heading already names the store, so the cell is just
+            # the event. INK rather than a literal white: Gmail's dark mode
+            # inverts it to white, and it stays legible on the light background
+            # everyone else sees. The trailing arrow carries the "this is a
+            # link" signal that the accent colour used to.
+            where = (
+                '<span style="color:%s">%s&nbsp;&rarr;</span>'
+                % (INK, esc(title or store_of(e)["short"]))
             )
+        # The whole cell is the link, not just the title -- a single line of
+        # 12px text is a poor tap target on a phone.
         where = (
             '<a href="%s" style="text-decoration:none;font-weight:600">%s</a>'
             % (esc(e.get("url") or ""), where)
@@ -316,7 +344,7 @@ COLUMNS = (("When", "23%"), ("Store", "41%"), ("Seats", "22%"),
            ("Price", "14%"))
 
 
-def html_section(heading, rows, tint):
+def html_section(heading, rows, tint, show_store=True):
     if not rows:
         return ""
     # nowrap plus no letter-spacing so "PRICE" stays on one line in a narrow
@@ -324,8 +352,9 @@ def html_section(heading, rows, tint):
     head_cells = "".join(
         '<th width="%s" style="text-align:left;padding:7px 7px;font-size:11px;'
         'text-transform:uppercase;color:%s;white-space:nowrap;'
-        'border-bottom:1px solid %s">%s</th>' % (width, MUTED, LINE, label)
-        for label, width in COLUMNS
+        'border-bottom:1px solid %s">%s</th>'
+        % (width, MUTED, LINE, label if show_store or i != 1 else "Event")
+        for i, (label, width) in enumerate(COLUMNS)
     )
     return (
         '<tr><td style="padding:22px 0 8px 0">'
@@ -338,7 +367,7 @@ def html_section(heading, rows, tint):
         'table-layout:fixed">'
         "<tr>%s</tr>%s</table></td></tr>"
         % (INK, esc(heading), len(rows), tint, tint, LINE,
-           head_cells, html_rows(rows))
+           head_cells, html_rows(rows, show_store))
     )
 
 
@@ -347,9 +376,12 @@ def render_html(rows, buckets, subject):
         '<div style="display:none;max-height:0;overflow:hidden;opacity:0;'
         'mso-hide:all">%s</div>' % esc(subject)
     )
-    sections = (
-        html_section("Seats still open", buckets["open"], OK_BG)
-        + html_section("Lottery events", buckets["lottery"], OK_BG)
+    sections = "".join(
+        html_section("%s - seats open" % label, store_rows, OK_BG,
+                     show_store=False)
+        for label, store_rows in by_store(buckets["open"])
+    ) + (
+        html_section("Lottery events", buckets["lottery"], OK_BG)
         + html_section("Waitlist only", buckets["waitlist"], PANEL)
         + html_section("Seat count unknown", buckets["unknown"], PANEL)
     )
@@ -379,7 +411,7 @@ def render_html(rows, buckets, subject):
 # plain text
 # --------------------------------------------------------------------------
 
-def text_section(heading, rows):
+def text_section(heading, rows, show_store=True):
     if not rows:
         return []
     out = ["", "%s (%d)" % (heading.upper(), len(rows)), "-" * 62]
@@ -392,7 +424,7 @@ def text_section(heading, rows):
             "%s  %s  %s"
             % (
                 ("%s %s %s" % (day, date, time)).ljust(22),
-                store_of(e)["short"].ljust(10),
+                (store_of(e)["short"] if show_store else "").ljust(10),
                 "%s (%s)" % (headline, detail),
             )
         )
@@ -408,8 +440,10 @@ def text_section(heading, rows):
 
 def render_text(rows, buckets, subject):
     lines = [subject, "=" * 62]
+    for label, store_rows in by_store(buckets["open"]):
+        lines += text_section("%s - seats open" % label, store_rows,
+                              show_store=False)
     for heading, key in (
-        ("Seats still open", "open"),
         ("Lottery events", "lottery"),
         ("Waitlist only", "waitlist"),
         ("Seat count unknown", "unknown"),
