@@ -205,12 +205,28 @@ def date_span(events):
 # selection
 # --------------------------------------------------------------------------
 
+# Event types nobody here can attend. Matched as a substring against the
+# lowercased title, so the "[Official Shop] " prefix and any season marker do
+# not matter. Excluded events are never alerted and never recorded, so
+# removing an entry here makes its events alert again.
+EXCLUDE_TITLES = ("kid's cup",)
+
+
+def is_excluded(event):
+    # Bandai mixes the straight and curly apostrophe between fields -- the
+    # title uses U+0027 while the excerpt uses U+2019 -- so normalise before
+    # matching rather than trusting one of them.
+    title = (event.get("event_series_title") or "").lower().replace("’", "'")
+    return any(bad in title for bad in EXCLUDE_TITLES)
+
+
 def select_new(snapshot, alerted_ids, force_all):
     now_key = pacific_now_key()
     rows = [
         e for e in snapshot.get("events", [])
         if is_upcoming(e, now_key)
         and not e.get("is_canceled")
+        and not is_excluded(e)
         and (force_all or e.get("id") not in alerted_ids)
     ]
     rows.sort(key=lambda e: str(e.get("start_datetime") or ""))
@@ -242,18 +258,20 @@ def bucket(rows):
 
 
 def subject_for(rows, buckets):
+    """Short enough to survive a phone inbox's truncation, and different
+    enough between cases that the inbox line alone says whether anything is
+    gettable."""
     n = len(rows)
-    noun = "event" if n == 1 else "events"
     # A whole season drops at once -- 37 events spanning three months landed in
     # a single run. Leading with the span says "schedule", which is what it is.
     # A handful of events is the case where the seat count is the headline.
     if n > 10:
-        return "%d new OPCG %s (%s)" % (n, noun, date_span(rows))
+        return "%d new OPCG · %s" % (n, date_span(rows))
     # A lottery you can still enter is just as actionable as an open seat.
     actionable = len(buckets["open"]) + len(buckets["lottery"])
     if actionable == 0:
-        return "%d new OPCG %s - waitlist only" % (n, noun)
-    return "%d new OPCG %s, %d you can still enter" % (n, noun, actionable)
+        return "%d new OPCG · all full" % n
+    return "%d new OPCG · %d open" % (n, actionable)
 
 
 # --------------------------------------------------------------------------

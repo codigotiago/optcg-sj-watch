@@ -41,8 +41,17 @@ costs one duplicate. A duplicate is an annoyance, a miss costs a seat.
 
 ## Email
 
-Sections, in order: seats still open, lottery events, waitlist only, and seat count unknown
-when non-empty. Sorted by event date within each.
+Open seats are split into one table per store, San Jose first, then lottery events,
+waitlist only, and seat count unknown when non-empty. Sorted by event date within each.
+
+Subject is `3 new OPCG · 2 open`, or `· all full` when nothing is enterable, or
+`· Sep 18 - Dec 30` when more than ten land at once and it is a season drop rather than
+something urgent.
+
+`EXCLUDE_TITLES` in `alert.py` drops event types nobody here can attend — currently
+Kid's Cup. Matched as a lowercased substring of the title, so prefixes and season markers
+do not matter. Excluded events are never alerted and never recorded in the ledger, so
+deleting an entry makes its events alert again on the next run.
 
 `entry_type` is `1` for first-come-first-served and `2` for a lottery draw. Lotteries run
 far past capacity by design — one has 242 applicants for 32 seats — so they are never
