@@ -15,7 +15,6 @@ import os
 import re
 import smtplib
 import sys
-from collections import Counter
 from datetime import datetime, timezone
 from email.message import EmailMessage
 from zoneinfo import ZoneInfo
@@ -51,12 +50,11 @@ FULL_INK = "#7f1d1d"
 PAGE_BG = "#f7f6f3"
 PANEL = "#ffffff"
 
-# Every San Jose tournament repeats this; it is not per-event information.
-# It appears once in the footer instead of under all 31 rows.
-FOOTER_NOTE = (
-    "Bring your own deck. If you are not at the shop by the start time your "
-    "seat goes to someone else."
-)
+# entry_type on the per-event endpoint: 1 is first-come-first-served, 2 is a
+# lottery draw. The two disagree about what count_applicants means -- 242
+# applicants against 32 seats is a hopeless queue under one and even odds
+# under the other -- so they are never rendered the same way.
+ENTRY_TYPE_LOTTERY = 2
 
 
 # --------------------------------------------------------------------------
@@ -114,8 +112,26 @@ def fmt_price(event):
     return ((raw + " " if raw else "") + amount, False)
 
 
+def lottery_detail(event, applied, cap):
+    """'242 entered / 32 seats - closes Oct 2', or '- entry closed' once the
+    deadline has passed. A drawn lottery and an open one look identical
+    otherwise, and only one of them is worth acting on."""
+    detail = "%s entered / %d seats" % (
+        applied if applied is not None else "?", cap or 0)
+    raw = event.get("apply_end_datetime")
+    if not raw:
+        return detail
+    # apply_end_datetime carries a real UTC offset, unlike start_datetime.
+    closes = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+    if closes <= datetime.now(timezone.utc):
+        return detail + " - entry closed"
+    return detail + " - closes %s" % fmt_when(closes.astimezone(STORE_TZ)
+                                              .strftime("%Y-%m-%dT%H:%M"))[1]
+
+
 def seat_state(event):
-    """-> (kind, headline, detail). kind is 'open', 'waitlist' or 'unknown'.
+    """-> (kind, headline, detail). kind is 'open', 'lottery', 'waitlist' or
+    'unknown'.
 
     Derived from max_join_count - count_applicants the way index.html does.
     seats_left in the snapshot goes as low as -209, so it is never dropped
@@ -123,6 +139,14 @@ def seat_state(event):
     """
     cap = event.get("max_join_count")
     applied = event.get("count_applicants")
+
+    # Checked first. A lottery routinely runs far past capacity by design, so
+    # falling through to the waitlist branch would report 242 applicants for
+    # 32 seats as "210 on waitlist" -- reading as hopeless when the draw in
+    # fact gives everyone the same odds.
+    if event.get("entry_type") == ENTRY_TYPE_LOTTERY:
+        return ("lottery", "Lottery", lottery_detail(event, applied, cap))
+
     if applied is None or cap is None:
         return ("unknown", "Seats unknown", "count unavailable")
     left = cap - applied
@@ -135,7 +159,7 @@ def seat_state(event):
     deep = applied - cap
     return (
         "waitlist",
-        "Waitlist" + (" ~%d deep" % deep if deep > 0 else ""),
+        "%d on waitlist" % deep if deep > 0 else "Full",
         "%d applied / %d seats" % (applied, cap),
     )
 
@@ -151,26 +175,18 @@ def esc(value):
     )
 
 
-def common_titles(all_events):
-    """The most-repeated title per store. 37 of 55 events share one title that
-    carries no information, so a row shows its title only when it differs from
-    its store's usual one -- which is exactly what surfaces the odd events."""
-    by_store = {}
-    for e in all_events:
-        by_store.setdefault(e.get("organizer_id"), []).append(
-            e.get("event_series_title") or ""
-        )
-    return {
-        oid: Counter(titles).most_common(1)[0][0]
-        for oid, titles in by_store.items() if titles
-    }
-
-
-def title_for(event, usual):
-    title = event.get("event_series_title") or ""
-    if title and title != usual.get(event.get("organizer_id")):
-        return title
-    return ""
+def title_for(event):
+    # Shown on every row. An earlier version hid titles matching the store's
+    # most common one, to cut noise from a 37-row season drop -- but that also
+    # hid the only thing saying what you are signing up for.
+    title = (event.get("event_series_title") or "").strip()
+    # Every event in this email is ONE PIECE, so the prefix is dead weight --
+    # and it is what pushes "ONE PIECE CARD GAME Extra Grand Battle for Stores
+    # 2026 September-October" to five wrapped lines.
+    for prefix in ("ONE PIECE CARD GAME ", "[Official Shop] "):
+        if title.startswith(prefix):
+            title = title[len(prefix):]
+    return title
 
 
 def date_span(events):
@@ -198,7 +214,7 @@ def select_new(snapshot, alerted_ids, force_all):
 
 
 def bucket(rows):
-    out = {"open": [], "waitlist": [], "unknown": []}
+    out = {"open": [], "lottery": [], "waitlist": [], "unknown": []}
     for e in rows:
         out[seat_state(e)[0]].append(e)
     return out
@@ -212,10 +228,11 @@ def subject_for(rows, buckets):
     # A handful of events is the case where the seat count is the headline.
     if n > 10:
         return "%d new OPCG %s (%s)" % (n, noun, date_span(rows))
-    open_n = len(buckets["open"])
-    if open_n == 0:
+    # A lottery you can still enter is just as actionable as an open seat.
+    actionable = len(buckets["open"]) + len(buckets["lottery"])
+    if actionable == 0:
         return "%d new OPCG %s - waitlist only" % (n, noun)
-    return "%d new OPCG %s, %d with seats open" % (n, noun, open_n)
+    return "%d new OPCG %s, %d you can still enter" % (n, noun, actionable)
 
 
 # --------------------------------------------------------------------------
@@ -230,14 +247,14 @@ def _cell(content, extra=""):
     )
 
 
-def html_rows(rows, usual):
+def html_rows(rows):
     out = []
     for e in rows:
         day, date, time = fmt_when(e.get("start_datetime"))
         price, free = fmt_price(e)
         kind, headline, detail = seat_state(e)
         seat_colour = {"open": OK_INK, "waitlist": FULL_INK}.get(kind, MUTED)
-        title = title_for(e, usual)
+        title = title_for(e)
 
         when = (
             '<span style="color:%s">%s</span> %s<br>'
@@ -279,11 +296,11 @@ def html_rows(rows, usual):
 
 # Pinned so the columns line up across sections; without this each table
 # sizes itself and Seats lands somewhere different in each one.
-COLUMNS = (("When", "17%"), ("Store", "30%"), ("Seats", "26%"),
-           ("Price", "11%"), ("", "16%"))
+COLUMNS = (("When", "15%"), ("Store", "36%"), ("Seats", "24%"),
+           ("Price", "9%"), ("", "16%"))
 
 
-def html_section(heading, rows, usual, tint):
+def html_section(heading, rows, tint):
     if not rows:
         return ""
     head_cells = "".join(
@@ -302,27 +319,20 @@ def html_section(heading, rows, usual, tint):
         'cellspacing="0" border="0" style="border-collapse:collapse">'
         "<tr>%s</tr>%s</table></td></tr>"
         % (INK, esc(heading), len(rows), tint, tint, LINE,
-           head_cells, html_rows(rows, usual))
+           head_cells, html_rows(rows))
     )
 
 
-def render_html(rows, buckets, usual, subject):
+def render_html(rows, buckets, subject):
     preheader = (
         '<div style="display:none;max-height:0;overflow:hidden;opacity:0;'
         'mso-hide:all">%s</div>' % esc(subject)
     )
     sections = (
-        html_section("Seats still open", buckets["open"], usual, OK_BG)
-        + html_section("Waitlist only", buckets["waitlist"], usual, PANEL)
-        + html_section("Seat count unknown", buckets["unknown"], usual, PANEL)
-    )
-    footer = (
-        '<tr><td style="padding:26px 0 0 0;font-size:12px;line-height:1.6;'
-        'color:%s;border-top:1px solid %s">'
-        "New means this watcher had not seen the event before. "
-        "Seats are first-come-first-served, and the counts above move fast - "
-        "check the signup page before counting on one.<br>%s"
-        "</td></tr>" % (MUTED, LINE, esc(FOOTER_NOTE))
+        html_section("Seats still open", buckets["open"], OK_BG)
+        + html_section("Lottery events", buckets["lottery"], OK_BG)
+        + html_section("Waitlist only", buckets["waitlist"], PANEL)
+        + html_section("Seat count unknown", buckets["unknown"], PANEL)
     )
     return (
         '<!doctype html><html><body style="margin:0;padding:0;background:%s">'
@@ -336,10 +346,9 @@ def render_html(rows, buckets, usual, subject):
         "Helvetica,Arial,sans-serif\">"
         '<tr><td style="font-size:20px;font-weight:700;color:%s;'
         'padding-bottom:2px">%s</td></tr>'
-        "%s%s"
+        "%s"
         "</table></td></tr></table></body></html>"
-        % (PAGE_BG, preheader, PAGE_BG, PAGE_BG, INK, esc(subject),
-           sections, footer)
+        % (PAGE_BG, preheader, PAGE_BG, PAGE_BG, INK, esc(subject), sections)
     )
 
 
@@ -347,7 +356,7 @@ def render_html(rows, buckets, usual, subject):
 # plain text
 # --------------------------------------------------------------------------
 
-def text_section(heading, rows, usual):
+def text_section(heading, rows):
     if not rows:
         return []
     out = ["", "%s (%d)" % (heading.upper(), len(rows)), "-" * 62]
@@ -355,7 +364,7 @@ def text_section(heading, rows, usual):
         day, date, time = fmt_when(e.get("start_datetime"))
         price, _ = fmt_price(e)
         _, headline, detail = seat_state(e)
-        title = title_for(e, usual)
+        title = title_for(e)
         out.append(
             "%s  %s  %s"
             % (
@@ -374,21 +383,15 @@ def text_section(heading, rows, usual):
     return out
 
 
-def render_text(rows, buckets, usual, subject):
+def render_text(rows, buckets, subject):
     lines = [subject, "=" * 62]
     for heading, key in (
         ("Seats still open", "open"),
+        ("Lottery events", "lottery"),
         ("Waitlist only", "waitlist"),
         ("Seat count unknown", "unknown"),
     ):
-        lines += text_section(heading, buckets[key], usual)
-    lines += [
-        "-" * 62,
-        "New means this watcher had not seen the event before.",
-        "Seats are first-come-first-served and the counts above move fast;",
-        "check the signup page before counting on one.",
-        FOOTER_NOTE,
-    ]
+        lines += text_section(heading, buckets[key])
     return "\n".join(lines) + "\n"
 
 
@@ -473,15 +476,15 @@ def main(argv=None):
         print("nothing new to alert (%d ids in ledger)" % len(alerted_ids))
         return 0
 
-    usual = common_titles(snapshot.get("events", []))
     buckets = bucket(rows)
     subject = subject_for(rows, buckets)
-    html = render_html(rows, buckets, usual, subject)
-    text = render_text(rows, buckets, usual, subject)
+    html = render_html(rows, buckets, subject)
+    text = render_text(rows, buckets, subject)
 
-    print("%s  [%d open / %d waitlist / %d unknown]  html %.1fkB"
-          % (subject, len(buckets["open"]), len(buckets["waitlist"]),
-             len(buckets["unknown"]), len(html.encode("utf-8")) / 1024.0))
+    print("%s  [%d open / %d lottery / %d waitlist / %d unknown]  html %.1fkB"
+          % (subject, len(buckets["open"]), len(buckets["lottery"]),
+             len(buckets["waitlist"]), len(buckets["unknown"]),
+             len(html.encode("utf-8")) / 1024.0))
 
     if args.dry_run:
         os.makedirs(args.dry_run, exist_ok=True)
