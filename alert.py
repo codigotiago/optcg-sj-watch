@@ -56,10 +56,6 @@ PANEL = "#ffffff"
 # under the other -- so they are never rendered the same way.
 ENTRY_TYPE_LOTTERY = 2
 
-# Only one real title exceeds this once its prefixes are stripped; the cap
-# exists for that one rather than as a general policy.
-TITLE_MAX = 36
-
 
 # --------------------------------------------------------------------------
 # formatting helpers (ports of the functions index.html already uses)
@@ -192,8 +188,8 @@ def title_for(event):
     if title.startswith("ONE PIECE CARD GAME "):
         title = title[len("ONE PIECE CARD GAME "):]
     title = re.sub(r"^\[[^\]]*\]\s*", "", title)
-    if len(title) > TITLE_MAX:
-        title = title[:TITLE_MAX].rsplit(" ", 1)[0] + "…"
+    # Never truncated past this. A clipped name is worse than a tall row --
+    # knowing which event it is, is the whole reason the title is here.
     return title
 
 
@@ -249,7 +245,7 @@ def subject_for(rows, buckets):
 
 def _cell(content, extra=""):
     return (
-        '<td style="padding:9px 10px;border-bottom:1px solid %s;'
+        '<td style="padding:9px 7px;border-bottom:1px solid %s;'
         'vertical-align:top;font-size:14px;color:%s;%s">%s</td>'
         % (LINE, INK, extra, content)
     )
@@ -264,11 +260,10 @@ def html_rows(rows):
         seat_colour = {"open": OK_INK, "waitlist": FULL_INK}.get(kind, MUTED)
         title = title_for(e)
 
-        # Date alone on the first line, weekday demoted to join the time:
-        # "Tue Sep 22" was wrapping to three lines in a 17% column on a phone.
         when = (
-            "%s<br><span style=\"color:%s;font-size:13px\">%s %s</span>"
-            % (esc(date), MUTED, esc(day), esc(time))
+            '<span style="color:%s">%s</span> %s<br>'
+            '<span style="color:%s;font-size:13px">%s</span>'
+            % (MUTED, esc(day), esc(date), MUTED, esc(time))
         )
 
         # The whole store/event block is the link, not just the title -- the
@@ -295,12 +290,16 @@ def html_rows(rows):
             '<span style="color:%s;font-weight:700">Free</span>' % OK_INK
             if free else esc(price)
         )
+        # No white-space:nowrap on any of these. A cell that cannot wrap
+        # overflows into its neighbour instead, which is what put "Tue 6:30 PM"
+        # on top of the event title on a phone. Wrapping is the graceful
+        # failure; overlapping is not.
         out.append(
             "<tr>"
-            + _cell(when, "white-space:nowrap;")
+            + _cell(when)
             + _cell(where)
-            + _cell(seats, "white-space:nowrap;")
-            + _cell(price_html, "white-space:nowrap;")
+            + _cell(seats)
+            + _cell(price_html)
             + "</tr>"
         )
     return "".join(out)
@@ -310,18 +309,21 @@ def html_rows(rows):
 # sizes itself and Seats lands somewhere different in each one. Four columns,
 # not five: a separate "Sign up" column wrapped to three lines on a phone, so
 # the store/event cell carries the link instead.
-# When needs ~80px at 360px wide or "Sun 3:00 PM", which is nowrap, spills
-# into the store name instead of wrapping.
-COLUMNS = (("When", "22%"), ("Store", "41%"), ("Seats", "23%"),
+# Sized so "Tue Sep 22", "23 waiting" and the "PRICE" header each hold one
+# line at 360px wide. The store column takes what is left and wraps, since a
+# long event name is the one thing here allowed to run to several lines.
+COLUMNS = (("When", "23%"), ("Store", "41%"), ("Seats", "22%"),
            ("Price", "14%"))
 
 
 def html_section(heading, rows, tint):
     if not rows:
         return ""
+    # nowrap plus no letter-spacing so "PRICE" stays on one line in a narrow
+    # column -- a header is short enough that overflowing beats wrapping.
     head_cells = "".join(
-        '<th width="%s" style="text-align:left;padding:7px 10px;font-size:11px;'
-        'text-transform:uppercase;letter-spacing:.05em;color:%s;'
+        '<th width="%s" style="text-align:left;padding:7px 7px;font-size:11px;'
+        'text-transform:uppercase;color:%s;white-space:nowrap;'
         'border-bottom:1px solid %s">%s</th>' % (width, MUTED, LINE, label)
         for label, width in COLUMNS
     )
