@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-18T01:32:00Z",
+  "fetched_at": "2026-09-18T07:37:20Z",
   "total": 55,
   "events": [
     {
@@ -24,8 +24,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366736",
       "first_seen_at": "2026-06-15T23:54:57+00:00",
-      "count_applicants": 51,
-      "seats_left": -19
+      "count_applicants": 50,
+      "seats_left": -18
     },
     {
       "id": 7366737,
@@ -49,8 +49,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366737",
       "first_seen_at": "2026-06-15T23:54:57+00:00",
-      "count_applicants": 56,
-      "seats_left": -24
+      "count_applicants": 55,
+      "seats_left": -23
     },
     {
       "id": 7366738,
@@ -99,8 +99,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366739",
       "first_seen_at": "2026-06-15T23:54:58+00:00",
-      "count_applicants": 52,
-      "seats_left": -20
+      "count_applicants": 53,
+      "seats_left": -21
     },
     {
       "id": 7366763,
@@ -199,8 +199,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7366771",
       "first_seen_at": "2026-06-16T00:06:13+00:00",
-      "count_applicants": 21,
-      "seats_left": 11
+      "count_applicants": 20,
+      "seats_left": 12
     },
     {
       "id": 7664866,
@@ -224,8 +224,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/7664866",
       "first_seen_at": "2026-07-17T18:05:34+00:00",
-      "count_applicants": 241,
-      "seats_left": -209
+      "count_applicants": 242,
+      "seats_left": -210
     },
     {
       "id": 8499820,
@@ -249,8 +249,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499820",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 36,
-      "seats_left": -4
+      "count_applicants": 37,
+      "seats_left": -5
     },
     {
       "id": 8499821,
@@ -274,8 +274,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499821",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 39,
-      "seats_left": -7
+      "count_applicants": 40,
+      "seats_left": -8
     },
     {
       "id": 8499822,
@@ -299,8 +299,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499822",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 34,
-      "seats_left": -2
+      "count_applicants": 35,
+      "seats_left": -3
     },
     {
       "id": 8499823,
@@ -324,8 +324,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499823",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 41,
-      "seats_left": -9
+      "count_applicants": 42,
+      "seats_left": -10
     },
     {
       "id": 8499824,
@@ -349,8 +349,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499824",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 33,
-      "seats_left": -1
+      "count_applicants": 35,
+      "seats_left": -3
     },
     {
       "id": 8499825,
@@ -374,8 +374,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499825",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 35,
-      "seats_left": -3
+      "count_applicants": 36,
+      "seats_left": -4
     },
     {
       "id": 8499826,
@@ -399,8 +399,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499826",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 22,
-      "seats_left": 10
+      "count_applicants": 24,
+      "seats_left": 8
     },
     {
       "id": 8499827,
@@ -424,8 +424,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499827",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 27,
-      "seats_left": 5
+      "count_applicants": 29,
+      "seats_left": 3
     },
     {
       "id": 8499828,
@@ -435,7 +435,7 @@
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-09-17T14:00:00+00:00",
       "event_created_at": "2026-09-14T23:51:48+00:00",
-      "event_updated_at": "2026-09-14T23:51:48+00:00",
+      "event_updated_at": "2026-09-18T03:23:31+00:00",
       "max_join_count": 32,
       "is_over_max_join_count": false,
       "applicationOpen": "1",
@@ -449,8 +449,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499828",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 30,
-      "seats_left": 2
+      "count_applicants": 32,
+      "seats_left": 0
     },
     {
       "id": 8499829,
@@ -474,8 +474,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499829",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 26,
-      "seats_left": 6
+      "count_applicants": 27,
+      "seats_left": 5
     },
     {
       "id": 8499830,
@@ -499,8 +499,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499830",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 24,
-      "seats_left": 8
+      "count_applicants": 27,
+      "seats_left": 5
     },
     {
       "id": 8499831,
@@ -524,8 +524,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499831",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 28,
-      "seats_left": 4
+      "count_applicants": 29,
+      "seats_left": 3
     },
     {
       "id": 8499832,
@@ -549,8 +549,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499832",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 24,
-      "seats_left": 8
+      "count_applicants": 28,
+      "seats_left": 4
     },
     {
       "id": 8499833,
@@ -574,8 +574,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499833",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 24,
-      "seats_left": 8
+      "count_applicants": 25,
+      "seats_left": 7
     },
     {
       "id": 8499834,
@@ -599,8 +599,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499834",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 25,
-      "seats_left": 7
+      "count_applicants": 28,
+      "seats_left": 4
     },
     {
       "id": 8499835,
@@ -624,8 +624,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499835",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 21,
-      "seats_left": 11
+      "count_applicants": 24,
+      "seats_left": 8
     },
     {
       "id": 8499836,
@@ -649,8 +649,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499836",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 22,
-      "seats_left": 10
+      "count_applicants": 23,
+      "seats_left": 9
     },
     {
       "id": 8499837,
@@ -699,8 +699,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499838",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 22,
-      "seats_left": 10
+      "count_applicants": 24,
+      "seats_left": 8
     },
     {
       "id": 8499839,
@@ -724,8 +724,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499839",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 22,
-      "seats_left": 10
+      "count_applicants": 24,
+      "seats_left": 8
     },
     {
       "id": 8499841,
@@ -749,8 +749,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499841",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 26,
-      "seats_left": 6
+      "count_applicants": 27,
+      "seats_left": 5
     },
     {
       "id": 8499840,
@@ -774,8 +774,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499840",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 15,
-      "seats_left": 17
+      "count_applicants": 17,
+      "seats_left": 15
     },
     {
       "id": 8499842,
@@ -799,8 +799,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499842",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 19,
-      "seats_left": 13
+      "count_applicants": 22,
+      "seats_left": 10
     },
     {
       "id": 8499843,
@@ -824,8 +824,8 @@
       "store": "San Jose (walk)",
       "url": "https://www.bandai-tcg-plus.com/event/8499843",
       "first_seen_at": "2026-09-17T19:16:00Z",
-      "count_applicants": 25,
-      "seats_left": 7
+      "count_applicants": 27,
+      "seats_left": 5
     },
     {
       "id": 7763907,
@@ -835,7 +835,7 @@
       "timezone": "America/Los_Angeles",
       "apply_start_datetime": "2026-08-17T19:00:00+00:00",
       "event_created_at": "2026-07-27T20:29:37+00:00",
-      "event_updated_at": "2026-09-18T01:17:57+00:00",
+      "event_updated_at": "2026-09-18T01:55:33+00:00",
       "max_join_count": 16,
       "is_over_max_join_count": false,
       "applicationOpen": "2",
@@ -899,8 +899,8 @@
       "store": "CardArt Sunnyvale (drive)",
       "url": "https://www.bandai-tcg-plus.com/event/7696196",
       "first_seen_at": "2026-07-20T22:11:20+00:00",
-      "count_applicants": 8,
-      "seats_left": 8
+      "count_applicants": 7,
+      "seats_left": 9
     },
     {
       "id": 6906808,
