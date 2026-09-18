@@ -56,6 +56,10 @@ PANEL = "#ffffff"
 # under the other -- so they are never rendered the same way.
 ENTRY_TYPE_LOTTERY = 2
 
+# Only one real title exceeds this once its prefixes are stripped; the cap
+# exists for that one rather than as a general policy.
+TITLE_MAX = 36
+
 
 # --------------------------------------------------------------------------
 # formatting helpers (ports of the functions index.html already uses)
@@ -113,20 +117,21 @@ def fmt_price(event):
 
 
 def lottery_detail(event, applied, cap):
-    """'242 entered / 32 seats - closes Oct 2', or '- entry closed' once the
-    deadline has passed. A drawn lottery and an open one look identical
-    otherwise, and only one of them is worth acting on."""
-    detail = "%s entered / %d seats" % (
-        applied if applied is not None else "?", cap or 0)
+    """'closes Oct 2', or 'entry closed' once the deadline has passed. A drawn
+    lottery and an open one look identical otherwise, and only one of them is
+    worth acting on -- which is why the deadline gets the line rather than the
+    entrant count. Entrant count is the fallback when there is no deadline, so
+    the cell is never blank."""
     raw = event.get("apply_end_datetime")
     if not raw:
-        return detail
+        return "%s entered / %d seats" % (
+            applied if applied is not None else "?", cap or 0)
     # apply_end_datetime carries a real UTC offset, unlike start_datetime.
     closes = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
     if closes <= datetime.now(timezone.utc):
-        return detail + " - entry closed"
-    return detail + " - closes %s" % fmt_when(closes.astimezone(STORE_TZ)
-                                              .strftime("%Y-%m-%dT%H:%M"))[1]
+        return "entry closed"
+    return "closes %s" % fmt_when(closes.astimezone(STORE_TZ)
+                                  .strftime("%Y-%m-%dT%H:%M"))[1]
 
 
 def seat_state(event):
@@ -147,20 +152,20 @@ def seat_state(event):
     if event.get("entry_type") == ENTRY_TYPE_LOTTERY:
         return ("lottery", "Lottery", lottery_detail(event, applied, cap))
 
+    # Strings stay short because Gmail's mobile app overrides white-space:nowrap
+    # when it squeezes the table onto a phone, and a long cell wraps to three
+    # lines. Capacity is the bare number: "9 left / 16 total" distinguishes a
+    # CardArt 16-seater from a San Jose 32-seater without spelling it out.
     if applied is None or cap is None:
-        return ("unknown", "Seats unknown", "count unavailable")
+        return ("unknown", "Seats unknown", "no count")
     left = cap - applied
     if left > 0:
-        return (
-            "open",
-            "%d seat%s left" % (left, "" if left == 1 else "s"),
-            "%d of %d taken" % (applied, cap),
-        )
+        return ("open", "%d left" % left, "%d total" % cap)
     deep = applied - cap
     return (
         "waitlist",
-        "%d on waitlist" % deep if deep > 0 else "Full",
-        "%d applied / %d seats" % (applied, cap),
+        "%d waiting" % deep if deep > 0 else "Full",
+        "%d total" % cap,
     )
 
 
@@ -180,12 +185,15 @@ def title_for(event):
     # most common one, to cut noise from a 37-row season drop -- but that also
     # hid the only thing saying what you are signing up for.
     title = (event.get("event_series_title") or "").strip()
-    # Every event in this email is ONE PIECE, so the prefix is dead weight --
-    # and it is what pushes "ONE PIECE CARD GAME Extra Grand Battle for Stores
-    # 2026 September-October" to five wrapped lines.
-    for prefix in ("ONE PIECE CARD GAME ", "[Official Shop] "):
-        if title.startswith(prefix):
-            title = title[len(prefix):]
+    # Every event here is ONE PIECE, so the prefix is dead weight, and a
+    # leading "[Oct-Dec 2026]" or "[Official Shop]" is a catalogue marker
+    # rather than a name. Stripping both gets every title but one under 30
+    # characters, which is what stops the store column wrapping to four lines.
+    if title.startswith("ONE PIECE CARD GAME "):
+        title = title[len("ONE PIECE CARD GAME "):]
+    title = re.sub(r"^\[[^\]]*\]\s*", "", title)
+    if len(title) > TITLE_MAX:
+        title = title[:TITLE_MAX].rsplit(" ", 1)[0] + "…"
     return title
 
 
@@ -256,17 +264,28 @@ def html_rows(rows):
         seat_colour = {"open": OK_INK, "waitlist": FULL_INK}.get(kind, MUTED)
         title = title_for(e)
 
+        # Date alone on the first line, weekday demoted to join the time:
+        # "Tue Sep 22" was wrapping to three lines in a 17% column on a phone.
         when = (
-            '<span style="color:%s">%s</span> %s<br>'
-            '<span style="color:%s;font-size:13px">%s</span>'
-            % (MUTED, esc(day), esc(date), MUTED, esc(time))
+            "%s<br><span style=\"color:%s;font-size:13px\">%s %s</span>"
+            % (esc(date), MUTED, esc(day), esc(time))
         )
-        where = esc(store_of(e)["short"])
+
+        # The whole store/event block is the link, not just the title -- the
+        # title renders at 12px, which is a poor tap target on a phone. The
+        # title carries the accent so the row still reads as tappable; with no
+        # title, the store name takes it instead.
+        where = '<span style="color:%s">%s</span>' % (
+            ACCENT if not title else INK, esc(store_of(e)["short"]))
         if title:
             where += (
                 '<br><span style="color:%s;font-size:12px">%s</span>'
-                % (MUTED, esc(title))
+                % (ACCENT, esc(title))
             )
+        where = (
+            '<a href="%s" style="text-decoration:none;font-weight:600">%s</a>'
+            % (esc(e.get("url") or ""), where)
+        )
         seats = (
             '<span style="color:%s;font-weight:700">%s</span><br>'
             '<span style="color:%s;font-size:12px">%s</span>'
@@ -276,28 +295,25 @@ def html_rows(rows):
             '<span style="color:%s;font-weight:700">Free</span>' % OK_INK
             if free else esc(price)
         )
-        link = (
-            '<a href="%s" style="color:%s;font-weight:700;'
-            'text-decoration:none">Sign up &rarr;</a>'
-            % (esc(e.get("url") or ""), ACCENT)
-        )
-
         out.append(
             "<tr>"
             + _cell(when, "white-space:nowrap;")
             + _cell(where)
             + _cell(seats, "white-space:nowrap;")
             + _cell(price_html, "white-space:nowrap;")
-            + _cell(link, "white-space:nowrap;")
             + "</tr>"
         )
     return "".join(out)
 
 
 # Pinned so the columns line up across sections; without this each table
-# sizes itself and Seats lands somewhere different in each one.
-COLUMNS = (("When", "15%"), ("Store", "36%"), ("Seats", "24%"),
-           ("Price", "9%"), ("", "16%"))
+# sizes itself and Seats lands somewhere different in each one. Four columns,
+# not five: a separate "Sign up" column wrapped to three lines on a phone, so
+# the store/event cell carries the link instead.
+# When needs ~80px at 360px wide or "Sun 3:00 PM", which is nowrap, spills
+# into the store name instead of wrapping.
+COLUMNS = (("When", "22%"), ("Store", "41%"), ("Seats", "23%"),
+           ("Price", "14%"))
 
 
 def html_section(heading, rows, tint):
@@ -316,7 +332,8 @@ def html_section(heading, rows, tint):
         '<tr><td bgcolor="%s" style="background:%s;border:1px solid %s;'
         'border-radius:8px">'
         '<table role="presentation" width="100%%" cellpadding="0" '
-        'cellspacing="0" border="0" style="border-collapse:collapse">'
+        'cellspacing="0" border="0" style="border-collapse:collapse;'
+        'table-layout:fixed">'
         "<tr>%s</tr>%s</table></td></tr>"
         % (INK, esc(heading), len(rows), tint, tint, LINE,
            head_cells, html_rows(rows))
@@ -340,8 +357,12 @@ def render_html(rows, buckets, subject):
         '<table role="presentation" width="100%%" cellpadding="0" '
         'cellspacing="0" border="0" bgcolor="%s" style="background:%s">'
         '<tr><td align="center" style="padding:20px 12px">'
-        '<table role="presentation" width="600" cellpadding="0" '
-        'cellspacing="0" border="0" style="width:600px;max-width:100%%;'
+        # width:100% capped by max-width, NOT width:600px with max-width:100%.
+        # The latter resolves its percentage against a containing block whose
+        # width depends on this table, so browsers drop the max-width and the
+        # right-hand columns fall off a phone screen.
+        '<table role="presentation" width="100%%" cellpadding="0" '
+        'cellspacing="0" border="0" style="width:100%%;max-width:600px;'
         'font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,'
         "Helvetica,Arial,sans-serif\">"
         '<tr><td style="font-size:20px;font-weight:700;color:%s;'
