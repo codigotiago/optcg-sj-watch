@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-20T01:40:53Z",
+  "fetched_at": "2026-09-20T07:55:43Z",
   "events": [
     {
       "id": 7366738,
@@ -12,7 +12,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/7366738",
-      "count_applicants": 61,
+      "count_applicants": 62,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -72,7 +72,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/7366740",
-      "count_applicants": 63,
+      "count_applicants": 64,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -102,7 +102,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/7664866",
-      "count_applicants": 245,
+      "count_applicants": 243,
       "entry_type": 2,
       "apply_end_datetime": "2026-10-02T22:00:00+00:00"
     },
@@ -132,7 +132,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499821",
-      "count_applicants": 55,
+      "count_applicants": 54,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -512,21 +512,6 @@
       "apply_end_datetime": null
     },
     {
-      "id": 7366737,
-      "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
-      "start_datetime": "2026-09-19T17:00:00",
-      "max_join_count": 32,
-      "is_canceled": false,
-      "entryFee": "0.000",
-      "entry_fee_currency_code": "USD",
-      "organizer_id": 9297,
-      "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/7366737",
-      "count_applicants": 54,
-      "entry_type": 1,
-      "apply_end_datetime": null
-    },
-    {
       "id": 6906807,
       "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
       "start_datetime": "2026-09-22T18:30:00",
@@ -537,7 +522,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/6906807",
-      "count_applicants": 33,
+      "count_applicants": 32,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -552,7 +537,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/7696196",
-      "count_applicants": 8,
+      "count_applicants": 9,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -582,7 +567,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
-      "count_applicants": 107,
+      "count_applicants": 106,
       "entry_type": 2,
       "apply_end_datetime": "2026-09-28T22:00:00+00:00"
     },
