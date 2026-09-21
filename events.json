@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-21T13:21:45Z",
+  "fetched_at": "2026-09-21T20:07:56Z",
   "events": [
     {
       "id": 7366739,
@@ -132,7 +132,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499822",
-      "count_applicants": 50,
+      "count_applicants": 49,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -282,7 +282,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499831",
-      "count_applicants": 42,
+      "count_applicants": 43,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -497,21 +497,6 @@
       "apply_end_datetime": null
     },
     {
-      "id": 7366738,
-      "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
-      "start_datetime": "2026-09-20T15:00:00",
-      "max_join_count": 32,
-      "is_canceled": false,
-      "entryFee": "0.000",
-      "entry_fee_currency_code": "USD",
-      "organizer_id": 9297,
-      "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/7366738",
-      "count_applicants": 52,
-      "entry_type": 1,
-      "apply_end_datetime": null
-    },
-    {
       "id": 6906807,
       "event_series_title": "[July-Sep 2026]Store Tournament Event OP",
       "start_datetime": "2026-09-22T18:30:00",
@@ -567,7 +552,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
-      "count_applicants": 106,
+      "count_applicants": 107,
       "entry_type": 2,
       "apply_end_datetime": "2026-09-28T22:00:00+00:00"
     },
@@ -612,7 +597,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064383",
-      "count_applicants": 24,
+      "count_applicants": 25,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -642,7 +627,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064384",
-      "count_applicants": 24,
+      "count_applicants": 25,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -672,7 +657,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064385",
-      "count_applicants": 22,
+      "count_applicants": 23,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -687,7 +672,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064386",
-      "count_applicants": 22,
+      "count_applicants": 23,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -702,7 +687,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064387",
-      "count_applicants": 22,
+      "count_applicants": 23,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -717,7 +702,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064388",
-      "count_applicants": 22,
+      "count_applicants": 23,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -732,7 +717,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064389",
-      "count_applicants": 20,
+      "count_applicants": 21,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -747,7 +732,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064390",
-      "count_applicants": 15,
+      "count_applicants": 16,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -762,7 +747,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064391",
-      "count_applicants": 15,
+      "count_applicants": 16,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -777,7 +762,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064392",
-      "count_applicants": 17,
+      "count_applicants": 18,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -792,7 +777,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064393",
-      "count_applicants": 17,
+      "count_applicants": 18,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -807,7 +792,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064394",
-      "count_applicants": 12,
+      "count_applicants": 13,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -822,7 +807,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064395",
-      "count_applicants": 10,
+      "count_applicants": 11,
       "entry_type": 1,
       "apply_end_datetime": null
     }
