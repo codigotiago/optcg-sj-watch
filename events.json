@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-25T12:13:36Z",
+  "fetched_at": "2026-09-25T19:33:17Z",
   "events": [
     {
       "id": 7366763,
@@ -12,7 +12,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/7366763",
-      "count_applicants": 32,
+      "count_applicants": 33,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -27,7 +27,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/7763908",
-      "count_applicants": 50,
+      "count_applicants": 49,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -42,7 +42,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/7366740",
-      "count_applicants": 68,
+      "count_applicants": 67,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -87,7 +87,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499820",
-      "count_applicants": 59,
+      "count_applicants": 60,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -102,7 +102,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499821",
-      "count_applicants": 64,
+      "count_applicants": 65,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -117,7 +117,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499822",
-      "count_applicants": 54,
+      "count_applicants": 55,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -132,7 +132,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499823",
-      "count_applicants": 63,
+      "count_applicants": 64,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -537,7 +537,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064383",
-      "count_applicants": 34,
+      "count_applicants": 35,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -567,7 +567,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064384",
-      "count_applicants": 35,
+      "count_applicants": 36,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -597,7 +597,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064385",
-      "count_applicants": 31,
+      "count_applicants": 32,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -612,7 +612,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064386",
-      "count_applicants": 31,
+      "count_applicants": 32,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -627,7 +627,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064387",
-      "count_applicants": 30,
+      "count_applicants": 31,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -642,7 +642,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064388",
-      "count_applicants": 29,
+      "count_applicants": 30,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -762,7 +762,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
-      "count_applicants": 111,
+      "count_applicants": 110,
       "entry_type": 2,
       "apply_end_datetime": "2026-09-28T22:00:00+00:00"
     }
