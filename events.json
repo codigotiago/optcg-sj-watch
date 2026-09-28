@@ -1,21 +1,6 @@
 {
-  "fetched_at": "2026-09-27T19:16:21Z",
+  "fetched_at": "2026-09-28T02:00:23Z",
   "events": [
-    {
-      "id": 7366771,
-      "event_series_title": "[Official Shop] Kid's Cup",
-      "start_datetime": "2026-09-27T15:00:00",
-      "max_join_count": 32,
-      "is_canceled": false,
-      "entryFee": "0.000",
-      "entry_fee_currency_code": "usd",
-      "organizer_id": 9297,
-      "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/7366771",
-      "count_applicants": 20,
-      "entry_type": 1,
-      "apply_end_datetime": null
-    },
     {
       "id": 7664866,
       "event_series_title": "ONE PIECE CARD GAME Extra Grand Battle for Stores 2026 September-October",
@@ -57,7 +42,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499821",
-      "count_applicants": 69,
+      "count_applicants": 68,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -147,7 +132,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499902",
-      "count_applicants": 6,
+      "count_applicants": 7,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -297,7 +282,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499903",
-      "count_applicants": 8,
+      "count_applicants": 10,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -342,7 +327,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499838",
-      "count_applicants": 37,
+      "count_applicants": 38,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -357,7 +342,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499839",
-      "count_applicants": 37,
+      "count_applicants": 38,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -417,7 +402,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499904",
-      "count_applicants": 6,
+      "count_applicants": 9,
       "entry_type": 1,
       "apply_end_datetime": null
     },
