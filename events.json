@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-28T14:28:21Z",
+  "fetched_at": "2026-09-28T21:23:03Z",
   "events": [
     {
       "id": 8639429,
@@ -12,7 +12,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8639429",
-      "count_applicants": 1,
+      "count_applicants": 5,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -42,7 +42,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499820",
-      "count_applicants": 63,
+      "count_applicants": 64,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -72,7 +72,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8639430",
-      "count_applicants": 0,
+      "count_applicants": 3,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -102,7 +102,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499823",
-      "count_applicants": 67,
+      "count_applicants": 66,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -162,7 +162,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8639432",
-      "count_applicants": 1,
+      "count_applicants": 4,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -492,7 +492,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/6906808",
-      "count_applicants": 22,
+      "count_applicants": 25,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -762,7 +762,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
-      "count_applicants": 105,
+      "count_applicants": 102,
       "entry_type": 2,
       "apply_end_datetime": "2026-09-28T22:00:00+00:00"
     }
