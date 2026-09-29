@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-29T09:02:14Z",
+  "fetched_at": "2026-09-29T13:19:43Z",
   "events": [
     {
       "id": 8639429,
@@ -492,7 +492,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/6906808",
-      "count_applicants": 26,
+      "count_applicants": 25,
       "entry_type": 1,
       "apply_end_datetime": null
     },
