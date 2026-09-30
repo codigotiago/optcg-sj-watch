@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-29T20:13:55Z",
+  "fetched_at": "2026-09-30T02:24:58Z",
   "events": [
     {
       "id": 8639429,
@@ -12,7 +12,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8639429",
-      "count_applicants": 10,
+      "count_applicants": 13,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -27,7 +27,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/7664866",
-      "count_applicants": 251,
+      "count_applicants": 248,
       "entry_type": 2,
       "apply_end_datetime": "2026-10-02T22:00:00+00:00"
     },
@@ -492,7 +492,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/6906808",
-      "count_applicants": 24,
+      "count_applicants": 18,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -537,7 +537,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064383",
-      "count_applicants": 37,
+      "count_applicants": 38,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -762,7 +762,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/7597960",
-      "count_applicants": 99,
+      "count_applicants": 93,
       "entry_type": 2,
       "apply_end_datetime": "2026-09-28T22:00:00+00:00"
     }
