@@ -28,7 +28,6 @@ CITIES = {
     "palo alto", "fremont", "newark", "union city", "morgan hill", "gilroy",
     "menlo park", "redwood city", "east palo alto",
 }
-MAX_PAGES = 150
 LINK_HINTS = ("url", "sns", "discord", "twitter", "insta", "web", "site",
               "facebook", "link", "homepage", "x_")
 
@@ -50,43 +49,50 @@ def walk(obj, path=""):
         yield path, obj
 
 
-def main():
-    # Capped and checked for repeats: an earlier run paged for 40 minutes
-    # without printing anything, so either the list is enormous or offset is
-    # being ignored. Either way, stop and report rather than spin.
-    events, seen, offset, total = [], set(), 0, None
-    for n in range(MAX_PAGES):
-        page = get(LIST % offset)["success"]
-        total = page.get("total", total)
+def fetch_pages(first, count):
+    """Pages [first, first+count) of the US list, South Bay events only.
+
+    The full list is ~47k events at ~12s a page, so one job cannot read it
+    before timing out; the workflow runs this as parallel shards instead."""
+    near, cities = [], {}
+    for n in range(first, first + count):
+        page = get(LIST % (n * 100))["success"]
         batch = page.get("event_list") or []
-        fresh = [e for e in batch if e.get("id") not in seen]
-        print("page %d offset %d: %d events (%d new), total %s, first start %s"
-              % (n, offset, len(batch), len(fresh), total,
+        print("page %d: %d events, total %s, first start %s"
+              % (n, len(batch), page.get("total"),
                  batch[0].get("start_datetime") if batch else "-"), flush=True)
-        if not fresh:
-            print("no new ids on this page; stopping", flush=True)
-            break
-        seen.update(e.get("id") for e in fresh)
-        events += fresh
-        offset += len(batch)
-        if total is not None and offset >= int(total):
+        for e in batch:
+            city = norm_city(e.get("city_code"))
+            cities[city] = cities.get(city, 0) + 1
+            if city in CITIES:
+                near.append(e)
+        if len(batch) < 100:
             break
         time.sleep(0.3)
-    else:
-        print("hit the %d-page cap" % MAX_PAGES, flush=True)
-    print("fetched %d of %s US events" % (len(events), total))
-    if events:
-        print("list fields:", sorted(events[0].keys()))
+    return near, cities
+
+
+def norm_city(value):
+    return str(value or "").strip().lower().replace("\u00e9", "e")
+
+
+def combine(paths):
+    events, seen = [], set()
+    for path in paths:
+        with open(path, encoding="utf-8") as fh:
+            for e in json.load(fh):
+                if e.get("id") not in seen:
+                    seen.add(e.get("id"))
+                    events.append(e)
+    print("%d South Bay events across %d shards" % (len(events), len(paths)))
 
     stores = {}
     for e in events:
-        city = str(e.get("city_code") or "").strip()
-        if city.lower() not in CITIES:
-            continue
         s = stores.setdefault(e.get("organizer_id"), {
             "organizer_id": e.get("organizer_id"),
             "name": e.get("organizer_name"),
-            "address": "%s, %s" % (e.get("street_address") or "", city),
+            "address": "%s, %s" % (e.get("street_address") or "",
+                                   e.get("city_code") or ""),
             "events": 0, "titles": {}, "next": None, "sample_event": e.get("id"),
         })
         s["events"] += 1
@@ -125,11 +131,29 @@ def main():
             print("  link %s = %s" % (p, v))
         for p, v in s.get("organizer_detail", {}).items():
             print("  org  %s = %s" % (p, v))
-
     with open("stores.json", "w", encoding="utf-8") as fh:
         json.dump(rows, fh, indent=1)
-    return 0
+
+
+def main(argv):
+    if argv[:1] == ["shard"]:
+        first, count, out = int(argv[1]), int(argv[2]), argv[3]
+        near, cities = fetch_pages(first, count)
+        with open(out, "w", encoding="utf-8") as fh:
+            json.dump(near, fh)
+        print("%d South Bay events in this shard" % len(near))
+        # Any spelling of a nearby city the CITIES set misses shows up here.
+        bay = sorted(c for c in cities
+                     if any(w in c for w in ("jose", "clara", "sunny", "cuper",
+                                             "campb", "gatos", "milp", "alto",
+                                             "mountain", "fremont")))
+        print("bay-ish city spellings seen:", bay)
+        return 0
+    if argv[:1] == ["combine"]:
+        combine(argv[1:])
+        return 0
+    sys.exit("usage: find_stores.py shard FIRST COUNT OUT | combine SHARD...")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))
