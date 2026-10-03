@@ -28,13 +28,14 @@ CITIES = {
     "palo alto", "fremont", "newark", "union city", "morgan hill", "gilroy",
     "menlo park", "redwood city", "east palo alto",
 }
+MAX_PAGES = 150
 LINK_HINTS = ("url", "sns", "discord", "twitter", "insta", "web", "site",
               "facebook", "link", "homepage", "x_")
 
 
 def get(url):
     req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=30) as resp:
+    with urllib.request.urlopen(req, timeout=20) as resp:
         return json.load(resp)
 
 
@@ -50,16 +51,29 @@ def walk(obj, path=""):
 
 
 def main():
-    events, offset, total = [], 0, None
-    while True:
+    # Capped and checked for repeats: an earlier run paged for 40 minutes
+    # without printing anything, so either the list is enormous or offset is
+    # being ignored. Either way, stop and report rather than spin.
+    events, seen, offset, total = [], set(), 0, None
+    for n in range(MAX_PAGES):
         page = get(LIST % offset)["success"]
         total = page.get("total", total)
         batch = page.get("event_list") or []
-        events += batch
+        fresh = [e for e in batch if e.get("id") not in seen]
+        print("page %d offset %d: %d events (%d new), total %s, first start %s"
+              % (n, offset, len(batch), len(fresh), total,
+                 batch[0].get("start_datetime") if batch else "-"), flush=True)
+        if not fresh:
+            print("no new ids on this page; stopping", flush=True)
+            break
+        seen.update(e.get("id") for e in fresh)
+        events += fresh
         offset += len(batch)
-        if not batch or (total is not None and offset >= int(total)):
+        if total is not None and offset >= int(total):
             break
         time.sleep(0.3)
+    else:
+        print("hit the %d-page cap" % MAX_PAGES, flush=True)
     print("fetched %d of %s US events" % (len(events), total))
     if events:
         print("list fields:", sorted(events[0].keys()))
