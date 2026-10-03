@@ -1,0 +1,22 @@
+name: Find South Bay OPCG stores (one-off)
+
+# Runs only on pushes to this branch, so it never touches the scheduled
+# watcher on main and never sends email.
+on:
+  push:
+    branches: [claude/one-piece-tcg-events-email-y3yom3]
+    paths: [scripts/find_stores.py, .github/workflows/find-stores.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/find_stores.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stores
+          path: stores.json
