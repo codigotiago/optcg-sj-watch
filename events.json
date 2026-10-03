@@ -1,21 +1,6 @@
 {
-  "fetched_at": "2026-10-02T20:08:15Z",
+  "fetched_at": "2026-10-03T02:20:15Z",
   "events": [
-    {
-      "id": 8639429,
-      "event_series_title": "Pirates Party 2026 Vol.3",
-      "start_datetime": "2026-10-02T17:30:00",
-      "max_join_count": 16,
-      "is_canceled": false,
-      "entryFee": "0.000",
-      "entry_fee_currency_code": "USD",
-      "organizer_id": 9297,
-      "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
-      "url": "https://www.bandai-tcg-plus.com/event/8639429",
-      "count_applicants": 26,
-      "entry_type": 1,
-      "apply_end_datetime": null
-    },
     {
       "id": 8499820,
       "event_series_title": "[Oct-Dec 2026]Store Tournament Event OP",
@@ -27,7 +12,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8499820",
-      "count_applicants": 68,
+      "count_applicants": 66,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -132,7 +117,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8614846",
-      "count_applicants": 20,
+      "count_applicants": 21,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -327,7 +312,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8614847",
-      "count_applicants": 15,
+      "count_applicants": 18,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -462,7 +447,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/8614848",
-      "count_applicants": 11,
+      "count_applicants": 13,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -512,6 +497,21 @@
       "apply_end_datetime": null
     },
     {
+      "id": 8639429,
+      "event_series_title": "Pirates Party 2026 Vol.3",
+      "start_datetime": "2026-10-02T17:30:00",
+      "max_join_count": 16,
+      "is_canceled": false,
+      "entryFee": "0.000",
+      "entry_fee_currency_code": "USD",
+      "organizer_id": 9297,
+      "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
+      "url": "https://www.bandai-tcg-plus.com/event/8639429",
+      "count_applicants": 29,
+      "entry_type": 1,
+      "apply_end_datetime": null
+    },
+    {
       "id": 7664866,
       "event_series_title": "ONE PIECE CARD GAME Extra Grand Battle for Stores 2026 September-October",
       "start_datetime": "2026-10-03T16:00:00",
@@ -522,7 +522,7 @@
       "organizer_id": 9297,
       "organizer_name": "ONE PIECE CARD GAME Official Shop San Jose",
       "url": "https://www.bandai-tcg-plus.com/event/7664866",
-      "count_applicants": 234,
+      "count_applicants": 231,
       "entry_type": 2,
       "apply_end_datetime": "2026-10-02T22:00:00+00:00"
     },
@@ -672,7 +672,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064389",
-      "count_applicants": 27,
+      "count_applicants": 28,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -687,7 +687,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064390",
-      "count_applicants": 23,
+      "count_applicants": 24,
       "entry_type": 1,
       "apply_end_datetime": null
     },
@@ -702,7 +702,7 @@
       "organizer_id": 1339,
       "organizer_name": "CardArt",
       "url": "https://www.bandai-tcg-plus.com/event/8064391",
-      "count_applicants": 23,
+      "count_applicants": 24,
       "entry_type": 1,
       "apply_end_datetime": null
     },
